@@ -13,9 +13,9 @@ public:
 int main()
 {
   Solution slu;
-  vector<int> vecnum = {2,7,11,15};
+  vector<int> input = {2,7,11,15};
   int target = 9;
-  vector<int> res = slu.twoSum(vecnum,target);
+  vector<int> res = slu.twoSum(input,target);
   cout << res << endl;
   system("pause");
 }
