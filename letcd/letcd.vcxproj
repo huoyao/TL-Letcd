@@ -163,7 +163,10 @@
     <ClCompile Include="029 Divide Two Integers.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="030 Substring with Concatenation of All Words.cpp" />
+    <ClCompile Include="030 Substring with Concatenation of All Words.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="031 Next Permutation.cpp" />
     <ClCompile Include="099 restore ip address.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
