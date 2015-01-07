@@ -6,40 +6,15 @@ using namespace std;
 class Solution {
 public:
   bool isValidSudoku(vector<vector<char> > &board) {
+    vector<vector<bool> > row(9, vector<bool>(9, false)), col(9, vector<bool>(9, false)), block(9, vector<bool>(9, false));
     for (int i = 0; i < 9; ++i)
     {
-      vector<bool> vec(10,false);
-      for (int j = 0; j < 9; ++i)
+      for (int j = 0; j < 9; ++j)
       {
         if (board[i][j] == '.') continue;
-        int idx = board[i][j] - '0';
-        if (vec[idx]) return false;
-        else vec[idx] = true;
-      }
-      vector<bool> vec1(10, false);
-      for (int j = 0; j < 9; ++i)
-      {
-        if (board[j][i] == '.') continue;
-        int idx = board[j][i] - '0';
-        if (vec1[idx]) return false;
-        else vec1[idx] = true;
-      }
-    }
-    for (int i = 0; i < 9; i += 3)
-    {
-      for (int j = 0; j < 9; j += 3)
-      {
-        vector<bool> vec(10, false);
-        for (int k = i; k < i + 3; ++k)
-        {
-          for (int t = j; t < j + 3; ++t)
-          {
-            if (board[k][t] == '.') continue;
-            int idx = board[k][t] - '0';
-            if (vec[idx]) return false;
-            else vec[idx] = true;
-          }
-        }
+        int idx = board[i][j] - '1';
+        if (row[i][idx] || col[j][idx] || block[i - i % 3 + j / 3][idx]) return false;
+        else row[i][idx] = col[j][idx] = block[i - i % 3 + j / 3][idx] = true;
       }
     }
     return true;
