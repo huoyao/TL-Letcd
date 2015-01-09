@@ -12,7 +12,7 @@ void find(const vector<int> &num,vector<int> &rec,vector<bool> &notuse,vector<ve
   }
   for (int i = 0; i < num.size(); ++i)
   {
-    if (i != 0 && num[i] == num[i - 1]) continue;
+    if (i != 0 && num[i] == num[i - 1] && notuse[i-1]) continue;
     if (!notuse[i]) continue;
     rec.push_back(num[i]);
     notuse[i] = false;
