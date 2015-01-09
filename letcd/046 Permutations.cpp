@@ -38,7 +38,7 @@ public:
 int main()
 {
   Solution slu;
-  vector<int> input = { 1,2,3 };
+  vector<int> input = { 1,1 };
   vector<vector<int> > res = slu.permute(input);
   for (auto &t : res)
   {
