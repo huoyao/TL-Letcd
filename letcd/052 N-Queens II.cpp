@@ -7,42 +7,35 @@ using namespace std;
 class Solution {
 private:
   int res;
-  int allone;
 public:
   int totalNQueens(int n) {
     res = 0;
-    allone = (1 << n) - 1;
-    vector<string> cur(n, string(n, '.'));
-    find(0, 0, 0, cur, 0);
+    vector<int> state(n, -1);
+    find(state, 0);
     return res;
   }
-  void find(const int row, const int ld, const int rd, vector<string> &cur, const int idx)
+  void find(vector<int> &state, const int idx)
   {
-    int pos, p;
-    if (row == allone)
+    if (idx == state.size())
       ++res;
     else
     {
-      pos = allone & (~(row | ld | rd));
-      while (pos)
+      for (int col = 0; col < state.size(); ++col)
       {
-        p = (~pos + 1) & pos;
-        pos = pos - p;
-        setQ(cur, p, idx, 'Q');
-        find((row | p), (ld | p) << 1, (rd | p) >> 1, cur, idx + 1);
-        setQ(cur, p, idx, '.');
+        if (isOK(state, idx, col))
+        {
+          state[idx] = col;
+          find(state, idx + 1);
+          state[idx] = -1;
+        }
       }
     }
   }
-  void setQ(vector<string> &cur, int p, const int idx, char c)
+  bool isOK(vector<int> state, const int row, const int col)
   {
-    int col = 0;
-    while (!(p & 1))
-    {
-      p >>= 1;
-      ++col;
-    }
-    cur[idx][col] = c;
+    for (int i = 0; i < row; ++i)
+      if (state[i] == col || abs(row - i) == abs(col - state[i])) return false;
+    return true;
   }
 };
 
