@@ -5,17 +5,19 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> twoSum(vector<int> &numbers, int target) {
+  vector<int> twoSum(vector<int> &numbers, int target) {
 
-    }
+  }
 };
 
 int main()
 {
   Solution slu;
-  vector<int> input = {2,7,11,15};
+  vector<int> input = { 2, 7, 11, 15 };
   int target = 9;
-  vector<int> res = slu.twoSum(input,target);
-  cout << res << endl;
+  vector<int> res = slu.twoSum(input, target);
+  for (auto &t : res)
+    cout << t << "  ";
+  cout << endl;
   system("pause");
 }
