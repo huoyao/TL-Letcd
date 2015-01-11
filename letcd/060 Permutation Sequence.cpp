@@ -4,40 +4,36 @@
 #include <string>
 using namespace std;
 
-void build(vector<string> &res,const int &n,int siz,string &rec, vector<bool> &isused)
-{
-  if (siz == n)
-    res.push_back(rec);
-  else
-  {
-    for (int i = 0; i < n; ++i)
-    {
-      if (isused[i]) continue;
-      isused[i] = true;
-      rec += ('1'+i);
-      build(res,n,siz+1,rec,isused);
-      isused[i] = false;
-      rec.pop_back();
-    }
-  }
-}
-
 class Solution {
 public:
   string getPermutation(int n, int k) {
-    vector<string> res;
-    string record;
-    vector<bool> isused(n,false);
-    build(res,n,0,record,isused);
-    return res[k-1];
+    int nmax = 1;
+    vector<int> num(n);
+    string res="";
+    for (int i = 1; i <= n; ++i)
+    {
+      num[i - 1] = i;
+      nmax *= i;
+    }
+    --k;
+    for (int i = 0; i < n; ++i)
+    {
+      nmax /= n - i;
+      int id = k / nmax;
+      res += ('0' + num[id]);
+      for (int j = id; j < n - i - 1; ++j)
+        num[j] = num[j+1];
+      k %= nmax;
+    }
+    return res;
   }
 };
 
 int main()
 {
   Solution slu;
-  int input = 3;
-  int target = 5;
+  int input = 9;
+  int target = 54494;
   string res = slu.getPermutation(input, target);
   cout << res<<endl;
   system("pause");
