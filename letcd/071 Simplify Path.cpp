@@ -19,14 +19,17 @@ public:
     for (int i = 0; i < len;)
     {
       string tmp = "";
-      while (path[i] == '/') ++i;
+      while (i < len && path[i] == '/') ++i;
       if (i == len) break;
-      while (path[i] != '/') tmp += path[i++];
+      while (i < len && path[i] != '/') tmp += path[i++];
       if (tmp == ".") continue;
       if (tmp == "..")
       {
-        if (pt)
-          pt = pt->pre;
+        if (pt){
+          st *tmp = pt->pre;
+          delete(pt);
+          pt = tmp;
+        }
         if (!pt) h = NULL;
       }
       else
@@ -38,8 +41,10 @@ public:
       }
     }
     if (!pt || !h) return "/";
-    while (h != pt) { res += ("/" + h->str); h=h->next; }
-    res += ("/"+h->str);
+    st *ptr = h;
+    while (h != pt) { res += ("/" + h->str); h = h->next; delete(ptr); ptr = h; }
+    res += ("/" + h->str);
+    delete(ptr);
     return res;
   }
 };
@@ -47,8 +52,8 @@ public:
 int main()
 {
   Solution slu;
-  string input = "/z//";
+  string input = "/.";
   string res = slu.simplifyPath(input);
-  cout << res << endl;
+  cout << res;
   system("pause");
 }
