@@ -283,7 +283,10 @@
     <ClCompile Include="069 Sqrt(x).cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="070 Climbing Stairs.cpp" />
+    <ClCompile Include="070 Climbing Stairs.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="071 Simplify Path.cpp" />
     <ClCompile Include="099 restore ip address.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
