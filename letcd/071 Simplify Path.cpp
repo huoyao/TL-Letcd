@@ -5,17 +5,11 @@
 using namespace std;
 
 class Solution {
-private:
-  struct st{
-    string str;
-    st *next, *pre;
-    st(string val) :str(val), next(NULL), pre(NULL){}
-  };
 public:
   string simplifyPath(string path) {
     string res = "";
     int len = path.length();
-    st *h = NULL, *pt = NULL;
+    vector<string> vecstr;
     for (int i = 0; i < len;)
     {
       string tmp = "";
@@ -23,28 +17,15 @@ public:
       if (i == len) break;
       while (i < len && path[i] != '/') tmp += path[i++];
       if (tmp == ".") continue;
-      if (tmp == "..")
-      {
-        if (pt){
-          st *tmp = pt->pre;
-          delete(pt);
-          pt = tmp;
-        }
-        if (!pt) h = NULL;
+      if (tmp == ".."){
+        if (!vecstr.empty()) vecstr.pop_back();
       }
       else
-      {
-        st *newst = new st(tmp);
-        if (!h) h = newst;
-        if (!pt) pt = newst;
-        else { pt->next = newst; newst->pre = pt; pt = newst; }
-      }
+        vecstr.push_back(tmp);
     }
-    if (!pt || !h) return "/";
-    st *ptr = h;
-    while (h != pt) { res += ("/" + h->str); h = h->next; delete(ptr); ptr = h; }
-    res += ("/" + h->str);
-    delete(ptr);
+    if (vecstr.empty()) return "/";
+    for (int i = 0; i < vecstr.size(); ++i)
+      res += ("/" + vecstr[i]);
     return res;
   }
 };
