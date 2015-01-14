@@ -298,7 +298,10 @@
     <ClCompile Include="074 Search a 2D Matrix.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="075 Sort Colors.cpp" />
+    <ClCompile Include="075 Sort Colors.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="076 Minimum Window Substring.cpp" />
     <ClCompile Include="099 restore ip address.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
