@@ -352,8 +352,10 @@
     <ClCompile Include="092 Reverse Linked List II.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="093 Restore IP Addresses.cpp" />
-    <ClCompile Include="099 restore ip address.cpp">
+    <ClCompile Include="093 Restore IP Addresses.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="094 Binary Tree Inorder Traversal.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="150 Evaluate Reverse Polish Notation.cpp">
