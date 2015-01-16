@@ -358,7 +358,10 @@
     <ClCompile Include="094 Binary Tree Inorder Traversal.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="144 Binary Tree Preorder Traversal.cpp" />
+    <ClCompile Include="144 Binary Tree Preorder Traversal.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="145 Binary Tree Postorder Traversal.cpp" />
     <ClCompile Include="150 Evaluate Reverse Polish Notation.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
