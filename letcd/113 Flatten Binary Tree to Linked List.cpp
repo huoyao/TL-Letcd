@@ -26,7 +26,7 @@ class Solution {
 public:
   void flatten(TreeNode *root) {
     TreeNode *pre = NULL;
-    flat(root,pre);
+    flat(root, pre);
   }
 };
 
