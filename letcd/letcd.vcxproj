@@ -407,7 +407,9 @@
     <ClCompile Include="109 Convert Sorted List to Binary Search Tree.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="110 Balanced Binary Tree.cpp" />
+    <ClCompile Include="110 Balanced Binary Tree.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="111 Minimum Depth of Binary Tree.cpp" />
     <ClCompile Include="144 Binary Tree Preorder Traversal.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
