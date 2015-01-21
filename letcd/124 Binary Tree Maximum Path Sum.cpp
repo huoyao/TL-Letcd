@@ -41,6 +41,6 @@ int main()
   h->left = new TreeNode(1);
   h->right = new TreeNode(3);
   int res = slu.maxPathSum(h);
-  cout << res<<endl;
+  cout << res << endl;
   system("pause");
 }
