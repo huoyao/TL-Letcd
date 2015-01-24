@@ -11,33 +11,33 @@ struct RandomListNode {
   RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
 };
 
-void build(RandomListNode *&target, RandomListNode *pt, unordered_map<RandomListNode *, RandomListNode *> &mapnode)
-{
-  target = new RandomListNode(pt->label);
-  mapnode[pt] = target;
-  RandomListNode *p = pt,*pp=target;
-  while (p->random)
-  {
-    if (mapnode.count(p->random)) { pp->random = mapnode[p->random]; return; }
-    pp->random = new RandomListNode(p->random->label);
-    mapnode[p->random] = pp->random;
-    pp = pp->random;
-    p = p->random;
-  }
-}
-
 class Solution {
 public:
   RandomListNode *copyRandomList(RandomListNode *head) {
-    RandomListNode *res=NULL;
-    unordered_map<RandomListNode *, RandomListNode *> mapnode;
+    RandomListNode *res=NULL,*node=head,*tmp;
     if (!head) return res;
-    while (head)
+    while (node)
     {
-      if (res == NULL) build(res,head,mapnode);
-      while (head->next && mapnode.count(head->next)) { mapnode[head]->next = mapnode[head->next]; head = head->next;}
-      if (head->next) {build(mapnode[head]->next, head->next, mapnode); head - head->next;}
-      else break;
+      tmp = node->next;
+      node->next = new RandomListNode(node->label);
+      node->next->next = tmp;
+      node = tmp;
+    }
+    node = head;
+    while (node)
+    {
+      if (node->random) node->next->random = node->random->next;
+      node = node->next->next;
+    }
+    node = head;
+    res = node->next;
+    tmp = res;
+    while (node)
+    {
+      node->next = tmp->next;
+      node = node->next;
+      if (node) tmp->next = node->next;
+      tmp = tmp->next;
     }
     return res;
   }
