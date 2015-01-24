@@ -476,7 +476,10 @@
     <ClCompile Include="132 Palindrome Partitioning II.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="133 Clone Graph.cpp" />
+    <ClCompile Include="133 Clone Graph.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="134 Gas Station.cpp" />
     <ClCompile Include="144 Binary Tree Preorder Traversal.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
