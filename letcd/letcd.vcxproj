@@ -497,7 +497,10 @@
     <ClCompile Include="139 Word Break.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="140 Word Break II.cpp" />
+    <ClCompile Include="140 Word Break II.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="141 Linked List Cycle.cpp" />
     <ClCompile Include="144 Binary Tree Preorder Traversal.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
