@@ -530,7 +530,11 @@
     <ClCompile Include="150 Evaluate Reverse Polish Notation.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="151 Reverse Words in a String.cpp" />
+    <ClCompile Include="151 Reverse Words in a String.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="152 Maximum Product Subarray.cpp" />
+    <ClCompile Include="153 Find Minimum in Rotated Sorted Array.cpp" />
     <ClCompile Include="template.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
