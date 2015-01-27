@@ -16,6 +16,12 @@ public:
     if (!headA || !headB) return NULL;
     int lena = 0, lenb = 0;
     ListNode *pa = headA, *pb = headB;
+    while (pa && pb)
+    {
+      if (pa->val == pb->val) return pa;
+      ++lena; pa = pa->next;
+      ++lenb; pb = pb->next;
+    }
     while (pa) { ++lena; pa = pa->next; }
     while (pb) { ++lenb; pb = pb->next; }
     int ex = abs(lena - lenb);
