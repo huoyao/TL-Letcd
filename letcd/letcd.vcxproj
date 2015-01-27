@@ -554,7 +554,9 @@
     <ClCompile Include="158 Read N Characters Given Read4 II - Call multiple times.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="159  Longest Substring with At Most Two Distinct Characters.cpp" />
+    <ClCompile Include="159  Longest Substring with At Most Two Distinct Characters.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="template.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
