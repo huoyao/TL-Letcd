@@ -20,4 +20,5 @@ int main()
     cout << t << "  ";
   cout << endl;
   system("pause");
+  return 0;
 }
