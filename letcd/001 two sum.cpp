@@ -1,14 +1,14 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <map>
+#include <unordered_map>
 using namespace std;
 
 class Solution {
 public:
   vector<int> twoSum(vector<int> &numbers, int target) {
     vector<int> vecres;
-    map<int, int> mapidx;
+    unordered_map<int, int> mapidx;
     for (int i = 0; i < numbers.size(); ++i)
     {
       if (mapidx.find(target - numbers[i]) != mapidx.end())
