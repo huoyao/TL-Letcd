@@ -13,42 +13,23 @@ struct ListNode {
 class Solution {
 public:
   ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
-    ListNode *lstres =NULL;
-    ListNode *lstid = NULL;
-    ListNode *pt1=l1, *pt2=l2;
+    ListNode *lstres =NULL, *lstid = NULL, *pt1=l1, *pt2=l2;
     int forward = 0;
-    while (pt1 && pt2)
+    while (pt1 || pt2)
     {
-      int t = pt1->val + pt2->val+forward;
+      int t = forward;
+      if (pt1) { t += pt1->val; pt1 = pt1->next; }
+      if (pt2) { t += pt2->val; pt2 = pt2->next; }
       if (!lstres)
       {
         lstres = new ListNode(t%10);
         lstid = lstres;
-      }
-      else
+      }else
       {
         lstid->next = new ListNode(t%10);
         lstid = lstid->next;
       }
-      pt1 = pt1->next;
-      pt2 = pt2->next;
       forward = t/10;
-    }
-    while (pt1)
-    {
-      int t = pt1->val + forward;
-      lstid->next = new ListNode(t % 10);
-      lstid = lstid->next;
-      pt1 = pt1->next;
-      forward = t / 10;
-    }
-    while (pt2)
-    {
-      int t = pt2->val + forward;
-      lstid->next = new ListNode(t % 10);
-      lstid = lstid->next;
-      pt2 = pt2->next;
-      forward = t / 10;
     }
     if (forward)
       lstid->next = new ListNode(forward);
