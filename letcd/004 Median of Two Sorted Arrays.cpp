@@ -5,29 +5,35 @@ using namespace std;
 class Solution {
 public:
   double findMedianSortedArrays(int A[], int m, int B[], int n) {
-    int all = m + n;
-    if (all & 0x1)
-      return findkthelem(A, m, B, n, all / 2 + 1);
-    else
-      return (findkthelem(A, m, B, n, all / 2) + findkthelem(A, m, B, n, all / 2 + 1)) / 2;
-  }
-  double findkthelem(int A[], int m, int B[], int n,int k)
-  {
-    if (m > n) return findkthelem( B, n, A, m, k);
-    if (m == 0) return B[k - 1];
-    if (k == 1) return min(A[0],B[0]);
-    int a_kth = min(k / 2, m), b_kth = k - a_kth;
-    if (A[a_kth - 1]<B[b_kth - 1]) return findkthelem(A+a_kth,m-a_kth,B, n, k-a_kth);
-    else if(A[a_kth - 1]>B[b_kth - 1]) return findkthelem(A , m, B+b_kth, n-b_kth, k - b_kth);
-    else return A[a_kth-1];
+    if (m > n) return findMedianSortedArrays(B, n, A, m);
+    int minidx = 0, maxidx = m, i, j, num1, mid = (m + n + 1) >> 1,num2;
+    while (minidx <= maxidx)
+    {
+      i = (minidx + maxidx) >> 1;
+      j = mid - i;
+      if (i<m && j>0 && B[j-1] > A[i]) minidx = i + 1;
+      else if (i>0 && j<n && B[j] < A[i-1]) maxidx = i - 1;
+      else
+      {
+        if (i == 0) num1 = B[j-1];
+        else if (j == 0) num1 = A[i - 1];
+        else num1 = max(A[i-1],B[j-1]);
+        break;
+      }
+    }
+    if (((m + n) & 1)) return num1;
+    if (i == m) num2 = B[j];
+    else if (j == n) num2 = A[i];
+    else num2 = min(A[i],B[j]);
+    return (num1 + num2) / 2.;
   }
 };
 
 int main()
 {
   Solution slu;
-  int A[] = { 1, 2, 3, 4, 5 }, b[] = { 44, 55, 66 };
-  double res = slu.findMedianSortedArrays(A,5,b,3);
+  int A[] = { 2}, b[] = { 1 };
+  double res = slu.findMedianSortedArrays(A,1,b,1);
   cout << res << endl;
   system("pause");
 }
