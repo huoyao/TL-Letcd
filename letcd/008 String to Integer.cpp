@@ -6,15 +6,11 @@ using namespace std;
 class Solution {
 public:
   int atoi(const char *str) {
-    int idx = 0;
+    int idx = 0,tag=1;
     while (str[idx] == ' ') ++idx;
-    if (str[idx] == '\0') return 0;
-    long long res=0,tag=1;
-    if (str[idx] == '-') tag = -1;
-    else if (str[idx] == '+') tag = 1;
-    else if (isdigit(str[idx])) res = res * 10 + str[idx] - '0';
-    else return 0;
-    ++idx;
+    long long res=0;
+    if (str[idx] == '-') { tag = -1; ++idx; }
+    else if (str[idx] == '+') { tag = 1; ++idx; };
     while (isdigit(str[idx])) {
       res = res*10 + str[idx] - '0';
       if ( res > INT_MAX && tag == 1)
@@ -23,15 +19,14 @@ public:
         return INT_MIN;
       ++idx;
     }
-    int resint = res*tag;
-    return resint;
+    return (int)res*tag;
   }
 };
 
 int main()
 {
   Solution slu;
-  char cc[] = "    -l000000213j";
+  char cc[] = "1";
   int vecres = slu.atoi(cc);
   cout << vecres<< endl;
   system("pause");
