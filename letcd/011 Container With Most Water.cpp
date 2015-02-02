@@ -10,18 +10,8 @@ public:
     while (l < r)
     {
       con = max(con, min(height[l], height[r])*(r - l));
-      if (height[l] < height[r])
-      {
-        int k = l;
-        while (k < r && height[k] <= height[l]) ++k;
-        l = k;
-      }
-      else
-      {
-        int k = r;
-        while (k>l && height[k] <= height[r]) --k;
-        r = k;
-      }
+      if (height[l] < height[r]) ++l;
+      else --r;
     }
     return con;
   }
