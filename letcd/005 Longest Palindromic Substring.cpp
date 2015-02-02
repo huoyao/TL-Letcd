@@ -40,7 +40,7 @@ public:
 int main()
 {
   Solution slu;
-  string s = "abb";
+  string s = "abbfafdlsajdfadsafdsafdsafdsafdsafdsafdsafdsafdsafdsjdfjkdjfkdksdkjfdjfkdjksfdkfjkdjfkrueiwtunzngajgutijgkl;jsdagkjitreiwptgsd;jgfsdio";
   string st = slu.longestPalindrome(s);
   cout << st<< endl;
   system("pause");
