@@ -12,9 +12,9 @@ public:
     for (int i = 0; i < strs.size(); ++i)
     {
       if (strs[i].find(comm) == 0) continue;
-      int mxidx = min(comm.length(),strs[i].length()),idx=0;
-      while (idx<mxidx && comm[idx] == strs[i][idx]) ++idx;
-      comm = comm.substr(0,idx);
+      int mxidcomm = min(comm.length(),strs[i].length());
+      comm = comm.substr(0, mxidcomm);
+      while (strs[i].find(comm)) comm.pop_back();
     }
     return comm;
   }
