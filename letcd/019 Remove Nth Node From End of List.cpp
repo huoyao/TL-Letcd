@@ -14,26 +14,17 @@ class Solution {
 public:
   ListNode *removeNthFromEnd(ListNode *head, int n) {
     if (n <= 0) return head;
-    int cnt = 0;
-    ListNode *lptr=head, *rptr=head;
+    ListNode *lptr=head, *rptr=head,*ptr=NULL,*ptrpre=NULL;
+    for (int i = 1; i<n; ++i) rptr = rptr->next;
     while (rptr)
     {
       rptr = rptr->next;
-      if (cnt > n) lptr = lptr->next;
-      ++cnt;
+      ptrpre = ptr;
+      ptr = lptr;
+      lptr = lptr->next;
     }
-    if (n > cnt) return head;
-    ListNode *pt = lptr->next;
-    if (n == cnt) {
-      head->next = NULL;
-      delete(head);
-      return pt;
-    }
-    if (!pt) return NULL;
-    lptr->next = pt->next;
-    pt->next = NULL;
-    delete(pt);
-    return head;
+    if (ptrpre) { ptrpre->next = lptr; delete(ptr); return head; }
+    else { delete(ptr); return lptr; }
   }
 };
 
