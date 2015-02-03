@@ -4,7 +4,7 @@
 #include <algorithm>
 using namespace std;
 
-void getre(string map[],int idx,vector<string> &st,string &mid,string &digits)
+void getre(int map[],int idx,vector<string> &st,string &mid,string &digits)
 {
   if (idx == digits.length())
   {
@@ -12,9 +12,9 @@ void getre(string map[],int idx,vector<string> &st,string &mid,string &digits)
     return;
   }
   int ind = digits[idx] - '0';
-  for (int i = 0; i < map[ind].length(); ++i)
+  for (int i = map[ind-1]; i < map[ind]; ++i)
   {
-    mid+= map[ind][i];
+    mid.push_back('a'+i);
     getre(map, idx+1, st, mid, digits);
     mid.pop_back();  //c++XI
   }
@@ -23,22 +23,10 @@ void getre(string map[],int idx,vector<string> &st,string &mid,string &digits)
 class Solution {
 public:
   vector<string> letterCombinations(string digits) {
-    string map[10];
-    map[0] = "";
-    map[1] = "";
-    for (int i = 2; i <8; ++i)
-    {
-      char c = 'a' + (i-2)*3 ;
-      map[i] = c;
-      map[i] += (c+1);
-      map[i] += (c+2);
-    }
-    map[7] += "s";
-    map[8] = "tuv";
-    map[9] = "wxyz";
+    int mapidx[10] = {0,0,3,6,9,12,15,19,22,26};
     vector<string> st;
     string mid="";
-    getre(map,0,st,mid,digits);
+    getre(mapidx,0,st,mid,digits);
     return st;
   }
 };
