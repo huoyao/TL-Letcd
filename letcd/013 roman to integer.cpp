@@ -2,19 +2,39 @@
 #include <vector>
 #include <algorithm>
 #include <string>
-#include <map>
+#include <unordered_map>
 using namespace std;
 
 class Solution {
 public:
   int romanToInt(string s) {
-    map<char, int> mapidx = { { 'I', 1 }, { 'V', 5 }, { 'X', 10 }, { 'L', 50 }, { 'C', 100 }, { 'D', 500 }, {'M',1000} };
-    int len = s.length(), tmp = mapidx[s[0]], res = tmp;
-    if (len == 1) return tmp;
-    for (int i = 1; i < len; ++i)
+    int len = s.length(),res = 0;
+    for (int i = len-1; i >=0; --i)
     {
-      res += mapidx[s[i]];
-      if (mapidx[s[i]]>mapidx[s[i - 1]]) res -= 2 * mapidx[s[i - 1]];
+      switch (s[i])
+      {
+      case 'I':
+        res += (res >= 5 ? -1 : 1);
+        break;
+      case 'V':
+        res += 5;
+        break;
+      case 'X':
+        res += (res >= 50 ? -10 : 10);
+        break;
+      case 'L':
+        res += 50;
+        break;
+      case 'C':
+        res += (res >= 500 > -100:100);
+        break;
+      case 'D':
+        res += 500;
+        break;
+      case 'M':
+        res += 1000;
+        break;
+      }
     }
     return res;
   }
