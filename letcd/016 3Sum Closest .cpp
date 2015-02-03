@@ -8,21 +8,19 @@ class Solution {
 public:
   int threeSumClosest(vector<int> &num, int target) {
     sort(num.begin(), num.end());
-    int maxre = INT_MAX;
-    for (int i = 0; i < (int)(num.size() - 2); ++i)  //mark
+    int maxre = INT_MAX,siz=num.size()-2;
+    for (int i = 0; i < siz; ++i)  
     {
       if (i>0 && num[i] == num[i - 1]) continue;
-      int lidx = i + 1, ridx = num.size() - 1, sum = target - num[i], sumtmp;
+      int lidx = i + 1, ridx = siz+1,sum=num[i]-target, sumtmp;
       while (lidx < ridx)
       {
-        sumtmp = num[lidx] + num[ridx]-sum;
+        sumtmp =sum+num[lidx] + num[ridx];
         if (sumtmp == 0)
           return target;
         if (abs(sumtmp)<abs(maxre))
         {
           maxre = sumtmp;
-          //while (num[lidx + 1] == num[lidx] && lidx + 1 < ridx-1) ++lidx;
-          //while (num[ridx - 1] == num[ridx] && ridx - 1 > lidx+1) --ridx;
         }
         if (sumtmp > 0)
           --ridx;
@@ -30,7 +28,7 @@ public:
           ++lidx;
       }
     }
-    return target + maxre;
+    return target+maxre;
   }
 };
 
