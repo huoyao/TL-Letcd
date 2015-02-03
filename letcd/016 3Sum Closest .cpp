@@ -16,16 +16,9 @@ public:
       while (lidx < ridx)
       {
         sumtmp =sum+num[lidx] + num[ridx];
-        if (sumtmp == 0)
-          return target;
-        if (abs(sumtmp)<abs(maxre))
-        {
-          maxre = sumtmp;
-        }
-        if (sumtmp > 0)
-          --ridx;
-        else
-          ++lidx;
+        if (sumtmp == 0) return target;
+        if (abs(sumtmp)<abs(maxre)) maxre = sumtmp;
+        sumtmp>0 ? --ridx : ++lidx;
       }
     }
     return target+maxre;
