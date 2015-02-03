@@ -7,20 +7,11 @@ using namespace std;
 class Solution {
 public:
   string intToRoman(int num) {
-    vector<vector<string> > vecstr(4);
-    vecstr[0] = {"","I","II","III","IV","V","VI","VII","VIII","IX"};
-    vecstr[1] = {"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
-    vecstr[2] = {"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
-    vecstr[3] = {"","M","MM","MMM"};
-    int idx,cnt=0;
-    string res="";
-    while (num)
-    {
-      idx = num % 10;
-      res = vecstr[cnt++][idx] + res;
-      num /= 10;
-    }
-    return res;
+    string M[] = { "", "M", "MM", "MMM" };
+    string C[] = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+    string X[] = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
+    string I[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+    return M[num / 1000] + C[(num % 1000) / 100] + X[(num % 100) / 10] + I[num % 10];
   }
 };
 
@@ -29,6 +20,6 @@ int main()
   Solution slu;
   int target = 3999;
   string res = slu.intToRoman(target);
-  cout << res<< endl;
+  cout << res << endl;
   system("pause");
 }
