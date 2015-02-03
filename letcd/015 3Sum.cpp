@@ -23,10 +23,8 @@ public:
           while (num[ridx - 1] == num[ridx] && ridx - 1 >= lidx) --ridx;
           ++lidx;
         }
-        else if (sumtmp > 0)
-          --ridx;
-        else
-          ++lidx;
+        else if (sumtmp > 0) --ridx;
+        else ++lidx;
       }
     }
     return vecres;
