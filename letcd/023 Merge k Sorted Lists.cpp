@@ -11,7 +11,7 @@ struct ListNode {
   ListNode(int x) : val(x), next(NULL) {}
 };
 
-bool cmp(const ListNode *l,const ListNode *r)
+bool cmp(const ListNode *l, const ListNode *r)
 {
   return l->val > r->val;
 }
@@ -26,22 +26,23 @@ public:
       else ++it;
     }
     if (lists.size() == 0) return NULL;
-    make_heap(lists.begin(),lists.end(),cmp);
-    ListNode *head=NULL, *cur=NULL;
+    make_heap(lists.begin(), lists.end(), cmp);
+    ListNode *head = new ListNode(0), *cur = head, *nxt = NULL;
     while (lists.size() > 0)
     {
-      if (head == NULL) head = cur = lists[0];
-      else cur = cur->next = lists[0];
+      cur = cur->next = lists[0];
       pop_heap(lists.begin(), lists.end(), cmp);
       int last = lists.size() - 1;
-      if (lists[last]->next != NULL)
+      nxt = lists[last]->next;
+      while (nxt && nxt->val < lists[0]->val) { cur = cur->next = nxt; nxt = nxt->next; }
+      if (nxt)
       {
-        lists[last] = lists[last]->next;
+        lists[last] = nxt;
         push_heap(lists.begin(), lists.end(), cmp);
       }
       else lists.pop_back();
     }
-    return head;
+    return head->next;
   }
 };
 
