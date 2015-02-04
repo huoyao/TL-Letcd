@@ -10,25 +10,21 @@ struct ListNode {
   ListNode(int x) : val(x), next(NULL) {}
 };
 
+ListNode *swap(ListNode *l1, ListNode *l2)
+{
+  l1->next = l2->next;
+  l2->next = l1;
+  return l2;
+}
+
 class Solution {
 public:
   ListNode *swapPairs(ListNode *head) {
-    ListNode *p1=NULL, *p2=head, *p3=NULL,*h=NULL;
-    if (!p2 || !p2->next) return head;
-    p3 = p2->next;
-    while (p3)
-    {
-      p2->next = p3->next;
-      p3->next = p2;
-      if (p1) p1->next = p3;
-      if (!h) h = p3;
-      p1 = p2;
-      if (!p2->next) return h;
-      else p2 = p2->next;
-      if (!p2->next) return h;
-      else p3 = p2->next;
-    }
-    return h;
+    ListNode *beg = new ListNode(0);
+    beg->next = head;
+    for (ListNode *cur = beg; cur->next && cur->next->next; cur = cur->next->next)
+      cur->next = swap(cur->next,cur->next->next);
+    return beg->next;
   }
 };
 
