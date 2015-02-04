@@ -7,12 +7,12 @@ class Solution {
 public:
   int removeElement(int A[], int n, int elem) {
     int idx = 0;
-    for (int i = 0; i < n; ++i)
+    while (idx < n)
     {
-      if (A[i] == elem) continue;
-      A[idx++] = A[i];
+      if (A[idx] == elem) { A[idx] = A[n - 1]; --n; }
+      else ++idx;
     }
-    return idx;
+    return n;
   }
 };
 
