@@ -14,32 +14,28 @@ class Solution {
 public:
   ListNode *reverseKGroup(ListNode *head, int k) {
     if (k <= 1 || !head) return head;
-    ListNode *h = head, *last = head, *p3, *p2,*p1,*res=head,*last_for=NULL;
-    int cnt = 0;
+    ListNode *h = new ListNode(0), *pre = h,*prebak=NULL, *cur=NULL,*nxt=NULL,*lastbak=NULL,*last=head;
+    h->next = head;
     while (last)
     {
-      ++cnt;
-      last = last->next;
-      if (cnt % k == 0)
+      int cnt=0;
+      while (cnt++ < k && last) last = last->next;
+      if (cnt <= k) break;
+      cur = pre->next;
+      prebak = pre->next;
+      nxt = cur->next;
+      lastbak = last;
+      while (cur != last)
       {
-        p2 = h->next;
-        p3 = p2->next;
-        h->next = last;
-        p2->next = h;
-        while (p3 != last)
-        {
-          p1 = p3->next;
-          p3->next = p2;
-          p2 = p3;
-          p3 = p1;
-        }
-        if (res==head) res = p2;   //mark
-        else last_for->next = p2;
-        last_for = h;
-        h = last;
+        cur->next = lastbak;
+        lastbak = cur;
+        cur = nxt;
+        if(nxt) nxt = nxt->next;
       }
+      pre->next = lastbak;
+      pre = prebak;
     }
-    return res;
+    return h->next;
   }
 };
 
