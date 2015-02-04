@@ -7,8 +7,7 @@ class Solution {
 public:
   int removeDuplicates(int A[], int n) {
     if (n <=1) return n;
-    int pre = A[0];
-    int cnt = 1;
+    int pre = A[0],cnt = 1;
     for (int i = 1; i < n; ++i)
     {
       if (A[i] == pre) continue;
