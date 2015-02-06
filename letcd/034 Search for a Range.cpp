@@ -33,7 +33,8 @@ public:
     vector<int> res;
     int lidx, ridx, tmp;
     lidx = findl(A, 0, n - 1, target);
-    ridx = findr(A, 0, n - 1, target);
+    if (lidx == -1) return { -1, -1 };
+    ridx = findr(A, lidx+1, n - 1, target);
     res.push_back(lidx);
     res.push_back(ridx);
     return res;
@@ -44,7 +45,7 @@ int main()
 {
   Solution slu;
   int input[] = { 3, 5, 5, 5, 5, 5,7 };
-  int target = 5;
+  int target = 2;
   vector<int> res = slu.searchRange(input, 7, target);
   cout << res[0] << "  " << res[1] << endl;
   system("pause");
