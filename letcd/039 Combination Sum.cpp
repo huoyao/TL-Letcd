@@ -5,7 +5,6 @@ using namespace std;
 
 void combi(const vector<int> &cand, vector<vector<int> > &res, vector<int> record, int idx, int sum, const int &target)
 {
-  if (sum > target) return;
   if (sum == target)
   {
     res.push_back(record);
@@ -13,9 +12,11 @@ void combi(const vector<int> &cand, vector<vector<int> > &res, vector<int> recor
   }
   for (int i = idx; i < cand.size(); ++i)
   {
+    if (sum + cand[i]>target) break;
     record.push_back(cand[i]);
     combi(cand, res, record, i, sum + cand[i], target);
     record.pop_back();
+    
   }
 }
 
