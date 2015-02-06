@@ -7,26 +7,15 @@ using namespace std;
 class Solution {
 public:
   int longestValidParentheses(string s) {
-    if (s.size() <= 1) return 0;
-    int ans = 0, last = -1;
-    stack<int> st;
-    for (int i = 0; i < s.size(); ++i)
+    int ans = 0, len = s.length();
+    vector<int> longest(len,0);
+    if (len <= 1) return 0;
+    for (int i = 0; i < len; ++i)
     {
-      if (s[i] == '(')
-        st.push(i);
-      else
-      {
-        if (st.empty())
-          last = i;
-        else
-        {
-          st.pop();
-          if (st.empty())
-            ans = max(ans, i - last);
-          else
-            ans = max(ans, i - st.top());   
-        }
-      }
+      int idx = i - longest[i - 1] - 1;
+      if (s[i] == ')' && idx >= 0 && s[idx] == '(')
+        longest[i] = longest[i-1] + 2 + (idx - 1 >= 0 ? longest[idx - 1] : 0);
+      ans = max(ans,longest[i]);
     }
     return ans;
   }
@@ -35,7 +24,7 @@ public:
 int main()
 {
   Solution slu;
-  string vecnum = "()";
+  string vecnum = "()(())";
   int res = slu.longestValidParentheses(vecnum);
   cout << res << endl;
   system("pause");
