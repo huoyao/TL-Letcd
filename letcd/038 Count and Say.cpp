@@ -23,10 +23,7 @@ class Solution {
 public:
   string countAndSay(int n) {
     string str = "1";
-    while (--n)
-    {
-      str = convert(str);
-    }
+    while (--n) str = convert(str);
     return str;
   }
 };
