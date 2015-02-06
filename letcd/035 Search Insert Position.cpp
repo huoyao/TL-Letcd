@@ -3,23 +3,18 @@
 #include <algorithm>
 using namespace std;
 
-int bisearch(int a[],const int &n,const int &target)
-{
-  int l = 0, r = n - 1;
-  while (l <= r)
-  {
-    int mid = (l + r) >> 1;
-    if (a[mid] == target) return mid;
-    if (a[mid] > target) r -= 1;
-    else l += 1;
-  }
-  return max(l,r);
-}
-
 class Solution {
 public:
   int searchInsert(int A[], int n, int target) {
-    return bisearch(A,n,target);
+    int l = 0, r = n - 1;
+    while (l <= r)
+    {
+      int mid = (l + r) >> 1;
+      if (A[mid] > target) r = mid-1;
+      else if (A[mid] < target)l = mid + 1;
+      else return mid;
+    }
+    return l;
   }
 };
 
