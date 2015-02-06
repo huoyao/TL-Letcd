@@ -5,13 +5,8 @@ using namespace std;
 
 bool fillsudo(int i, int j, vector<vector<char> > &bd, vector<vector<bool> > &row, vector<vector<bool> > &col, vector<vector<bool> > &block)
 {
-  if (j == 9)
-  {
-    ++i;
-    j = 0;
-  }
-  if (i == 9 && j == 0)
-    return true;
+  if (j == 9){ ++i; j = 0; }
+  if (i == 9 && j == 0) return true;
   else if (bd[i][j] != '.')
     return fillsudo(i, j+1, bd, row, col, block);
   else
@@ -24,8 +19,7 @@ bool fillsudo(int i, int j, vector<vector<char> > &bd, vector<vector<bool> > &ro
         row[i][k] = false;
         col[j][k] = false;
         block[i - i % 3 + j / 3][k] = false;
-        if (fillsudo(i, j + 1, bd, row, col, block))
-          return true;
+        if (fillsudo(i, j + 1, bd, row, col, block)) return true;
         else
         {
           bd[i][j] = '.';
