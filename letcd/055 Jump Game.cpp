@@ -6,21 +6,10 @@ using namespace std;
 class Solution {
 public:
   bool canJump(int A[], int n) {
-    if (n <= 1) return true;
-    int maxreach = A[0], lastid = n - 1, centerid = 0;
-    while (maxreach < lastid )
-    {
-      int id=-1;
-      if (A[centerid] == 0) break;
-      for (int i = 1; i <= A[centerid]; ++i)
-      if (A[centerid + i] + centerid + i>=maxreach)
-      {
-        id = centerid + i;
-        maxreach = A[centerid + i] + centerid + i;
-      }
-      centerid = id;
-    }
-    return maxreach>=lastid;
+    int i = 0, maxreach = 0;
+    for (; i < n && i <= maxreach && maxreach < n - 1; ++i)
+      maxreach = max(maxreach,i+A[i]);
+    return maxreach>=n-1;
   }
 };
 
