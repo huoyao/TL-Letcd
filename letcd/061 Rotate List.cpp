@@ -14,11 +14,16 @@ class Solution {
 public:
   ListNode *rotateRight(ListNode *head, int k) {
     ListNode *h = head, *ptarget = NULL, *pend = head, *phead,*p=head;
-    int len = 0;
-    while (p){ ++len; p = p->next; }
-    if (len == 0) return h;
-    k %= len;
-    while (--k && pend) { pend = pend->next; }
+    int len = 0,kbak=k;
+    if (k <= 0 || !head) return head;
+    while (--kbak && pend) { pend = pend->next; ++len; }
+    if (!pend)
+    {
+      k %= len;
+      pend = head;
+      while (--k && pend) { pend = pend->next; }
+    }
+    else if (kbak == 0 && !pend->next) return head;
     if (!pend || !pend->next || k < 0) return h;
     while (pend->next)
     {
@@ -42,7 +47,7 @@ int main()
   h->next = new ListNode(2);
   ListNode *p = h->next;
   p->next = new ListNode(3);
-  int target = 1;
+  int target = 4;
   ListNode *res = slu.rotateRight(h, target);
   while (res)
   {
