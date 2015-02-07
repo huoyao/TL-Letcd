@@ -3,34 +3,26 @@
 #include <algorithm>
 using namespace std;
 
-void find(const vector<int> &num,vector<int> &rec,vector<bool> &notuse,vector<vector<int> > &res)
+void find(vector<int> &num,int beg,vector<vector<int> > &res)
 {
-  if (rec.size() == num.size())
+  if (beg >= num.size())
   {
-    res.push_back(rec);
+    res.push_back(num);
     return;
   }
-  for (int i = 0; i < num.size(); ++i)
+  for (int i = beg; i < num.size(); ++i)
   {
-    if (i != 0 && num[i] == num[i - 1] && notuse[i-1]) continue;
-    if (!notuse[i]) continue;
-    rec.push_back(num[i]);
-    notuse[i] = false;
-    find(num,rec,notuse,res);
-    rec.pop_back();
-    notuse[i] = true;
+    swap(num[beg],num[i]);
+    find(num,beg+1,res);
+    swap(num[beg],num[i]);
   }
 }
 
 class Solution {
 public:
   vector<vector<int> > permute(vector<int> &num) {
-    vector<int> record;
     vector<vector<int> > res;
-    if (num.size() <= 1) { res.push_back(num); return res; }
-    sort(num.begin(), num.end());
-    vector<bool> notused(num.size(),true);
-    find(num,record,notused,res);
+    find(num,0,res);
     return res;
   } 
 };
