@@ -25,8 +25,7 @@ public:
     if (intervals.size() <= 0) return res;
     sort(intervals.begin(),intervals.end(),cmp);
     Interval tmp(intervals[0].start,intervals[0].end);
-    int i = 1;
-    for (; i < intervals.size(); ++i)
+    for (int i=1; i < intervals.size(); ++i)
     {
       if (intervals[i].start <= tmp.end)
         tmp.end = max(tmp.end,intervals[i].end);
