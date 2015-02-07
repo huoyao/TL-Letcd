@@ -24,7 +24,7 @@ public:
       while (--k && pend) { pend = pend->next; }
     }
     else if (kbak == 0 && !pend->next) return head;
-    if (!pend || !pend->next || k < 0) return h;
+    if (!pend->next) return h;
     while (pend->next)
     {
       if (!ptarget)
