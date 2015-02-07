@@ -6,24 +6,20 @@ using namespace std;
 class Solution {
 public:
   vector<int> plusOne(vector<int> &digits) {
-    int len = digits.size() - 1, ex = 1,all,a,b;
-    vector<int> res;
+    int len = digits.size() - 1;
     for (int i = len; i >=0; --i)
     {
-      all = ex + digits[i];
-      res.push_back( all % 10);
-      ex = all / 10;
-      if (ex==0)
+      if (digits[i] == 9)
+        digits[i] = 0;
+      else
       {
-        while ((--i) >= 0) res.push_back(digits[i]);
-        break;
+        ++digits[i];
+        return;
       }
     }
-    if (ex) res.push_back(ex);
-    a = 0;
-    b = res.size()-1;
-    while (a < b) { swap(res[a], res[b]); ++a; --b;}
-    return res;
+    digits[0] = 1;
+    digits.push_back(0);
+    return digits;
   }
 };
 
