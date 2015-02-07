@@ -4,8 +4,6 @@
 using namespace std;
 
 class Solution {
-private:
-  int res;
 public:
   int uniquePaths(int m, int n) {
     vector<int> vec(n, 1);
