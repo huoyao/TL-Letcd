@@ -6,13 +6,12 @@ using namespace std;
 class Solution {
 public:
   void rotate(vector<vector<int> > &matrix) {
-    int n = matrix[0].size();
-    int cnt = n / 2,round=n;
+    int n = matrix[0].size(),cnt = n / 2,round=n-1;
     if (n <= 1) return;
     for (int j = 0; j < cnt; ++j)
     {
       int tag1 = j + n -1, tag2 = tag1, tag3 = j;
-      for (int i = j; i < round-1; ++i)
+      for (int i = j; i < round; ++i)
       {
         int tmp = matrix[j][i];
         matrix[j][i] = matrix[tag1][j];
