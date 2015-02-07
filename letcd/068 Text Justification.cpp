@@ -4,58 +4,24 @@
 #include <string>
 using namespace std;
 
-void inst(const int &L, const int &strlen, const int &start, const int &end, const vector<string> &words, vector<string> &res, bool islast)
-{
-  string str = "";
-  int spacenum = L - strlen, wordnum = end - start - 1 == 0 ? 1 : end - start - 1;
-  int everyspace = spacenum / wordnum;
-  int extaspace = wordnum == 1 ? 0 : spacenum % wordnum;
-  string tmp(everyspace, ' ');
-  str += words[start];
-  int i = start + 1;
-  for (; i < end; ++i)
-  {
-    str += ' ';
-    if (!islast)
-    {
-      str += tmp;
-      if (extaspace>0) str += ' ';
-      --extaspace;
-    }
-    str += words[i];
-  }
-  if (islast)
-  {
-    string lst(spacenum,' ');
-    str += lst;
-    res.push_back(str);
-    return;
-  }
-  if (i == start + 1) str += tmp;
-  res.push_back(str);
-}
-
 class Solution {
 public:
   vector<string> fullJustify(vector<string> &words, int L) {
-    int len = words.size(), strlen = -1, start, end;
+    int wordlen = words.size();
     vector<string> res;
-    bool islast = false;
-    for (int idx = 0; idx < len; ++idx)
+    for (int i = 0,k,len; i < wordlen; i+=k)
     {
-      strlen = -1;
-      start = idx;
-      while (idx < len && strlen <= L) strlen += words[idx++].length() + 1;
-      if (strlen <= L)
-        end = idx;
-      else
+      for (k = len = 0; i + k < wordlen && len + words[i + k].size() <= L - k; ++k)
+        len += words[i + k].size();
+      string tmp = words[i];
+      for (int j = 0; j < k - 1; ++j)
       {
-        end = idx - 1;
-        idx -= 2;
-        strlen -= (words[idx + 1].length() + 1);
+        if (i + k >= wordlen) tmp += " ";
+        else tmp += string((L-len)/(k-1)+(j<(L-len)%(k-1)),' ');
+        tmp += words[i + j + 1];
       }
-      if (end == len) islast = true;
-      inst(L, strlen, start, end, words, res, islast);
+      tmp += string(L-tmp.size(),' ');
+      res.push_back(tmp);
     }
     return res;
   }
