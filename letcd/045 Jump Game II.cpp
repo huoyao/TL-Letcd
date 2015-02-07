@@ -7,16 +7,16 @@ class Solution {
 public:
   int jump(int A[], int n) {
     if (n <= 1) return 0;
-    int step = 0, maxreach = A[0], lastid = n - 1, centerid = 0;
-    while (maxreach < lastid)
+    int step = 0, maxreach = A[0], centerid = 0;
+    while (maxreach < n-1)
     {
       int id;
       for (int i = 1; i <= A[centerid]; ++i)
-      if (A[centerid + i] + centerid + i>maxreach)
-      {
-        id = centerid + i;
-        maxreach = A[centerid + i] + centerid + i;
-      }
+        if (A[centerid + i] + centerid + i>maxreach)
+        {
+          id = centerid + i;
+          maxreach = A[centerid + i] + centerid + i;
+        }
       centerid = id;
       step++;
     }
