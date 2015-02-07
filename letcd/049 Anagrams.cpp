@@ -2,13 +2,13 @@
 #include <vector>
 #include <algorithm>
 #include <string>
-#include <map>
+#include <unordered_map>
 using namespace std;
 
 class Solution {
 public:
   vector<string> anagrams(vector<string> &strs) {
-    map<string, string> mapt;
+    unordered_map<string, string> mapt;
     string target;
     vector<string> vecres;
     for (int i = 0; i < strs.size(); ++i)
@@ -20,8 +20,10 @@ public:
       else
       {
         if (mapt[tmp] != "A")
+        {
           vecres.push_back(mapt[tmp]);
-        mapt[tmp] = "A";
+          mapt[tmp] = "A";
+        }
         vecres.push_back(strs[i]);
       }
     }
