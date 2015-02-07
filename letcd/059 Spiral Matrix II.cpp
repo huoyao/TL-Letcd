@@ -7,9 +7,7 @@ class Solution {
 public:
   vector<vector<int> > generateMatrix(int n) {
     int id = n / 2, round1 = n - 1, i = 0,cnt=1;
-    bool moreline = false;
     vector<vector<int> > matrix(n, vector<int>(n));
-    if (n % 2) moreline = true;
     for (; i < id; ++i)
     {
       int idx1 = i, idx2 = i;
@@ -19,7 +17,7 @@ public:
       while (idx2 > i) matrix[idx2--][idx1]=cnt++;
       --round1;
     }
-    if (moreline) matrix[i][i]=cnt;
+    if (n % 2) matrix[i][i] = cnt;
     return matrix;
   }
 };
