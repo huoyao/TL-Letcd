@@ -17,10 +17,10 @@ public:
     vector<Interval> res;
     if (intervals.size() <= 0)  //mark
     {
-      res.push_back(newInterval); 
+      res.push_back(newInterval);
       return res;
     }
-    int lval = newInterval.start, rval = newInterval.end,len=intervals.size(),idx=0;
+    int lval = newInterval.start, rval = newInterval.end, len = intervals.size(), idx = 0;
     while (idx < len && intervals[idx].end < lval) res.push_back(intervals[idx++]);
     if (idx == len)
     {
@@ -29,8 +29,8 @@ public:
     }
     Interval tmp = intervals[idx];
     while (idx < len && intervals[idx].start <= rval) ++idx;
-    tmp.end = max(intervals[idx-1].end,rval);
-    tmp.start = min(tmp.start,lval);  //mark
+    tmp.end = max(intervals[idx - 1].end, rval);
+    tmp.start = min(tmp.start, lval);  //mark
     res.push_back(tmp);
     while (idx < len) res.push_back(intervals[idx++]);
     return res;
