@@ -8,7 +8,7 @@ public:
   bool isNumber(const char *s) {
     bool has_exp = false, has_space = false, has_num = false,has_dot=false;
     while (*s == ' ') ++s;
-    while (*s == '+' || *s == '-') ++s;
+    if (*s == '+' || *s == '-') ++s;
     while (*s != '\0')
     {
       if (isdigit(*s))
