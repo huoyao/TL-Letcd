@@ -6,17 +6,14 @@ using namespace std;
 class Solution {
 public:
   int sqrt(int x) {
-    if (x == 1) return 1;
-    int n = x / 2,a=1,b=n;
-    while (a <= b)
+    long long ans = 0, bit = 1L << 15;
+    while (bit > 0)
     {
-      int midid = (a + b) >> 1;
-      long long mid = (long long)midid*midid;
-      if (x == mid) return midid;
-      if (x>mid) a=midid+1;
-      else b=midid-1;
+      ans |= bit;
+      if (ans*ans > x) ans ^= bit;   //recovery ans
+      bit >>= 1;
     }
-    return min(a, b);
+    return (int)ans;
   }
 };
 
