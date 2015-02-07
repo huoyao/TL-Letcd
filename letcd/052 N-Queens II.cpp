@@ -6,36 +6,28 @@ using namespace std;
 
 class Solution {
 private:
-  int res;
+  int res = 0, allone;
 public:
   int totalNQueens(int n) {
-    res = 0;
-    vector<int> state(n, -1);
-    find(state, 0);
+    allone = (1 << n) - 1;
+    find(0, 0, 0, 0);
     return res;
   }
-  void find(vector<int> &state, const int idx)
+  void find(const int row, const int ld, const int rd, const int idx)
   {
-    if (idx == state.size())
+    int pos, p;
+    if (row == allone)
       ++res;
     else
     {
-      for (int col = 0; col < state.size(); ++col)
+      pos = allone & (~(row | ld | rd));
+      while (pos)
       {
-        if (isOK(state, idx, col))
-        {
-          state[idx] = col;
-          find(state, idx + 1);
-          state[idx] = -1;
-        }
+        p = (~pos + 1) & pos;
+        pos = pos - p;
+        find((row | p), (ld | p) << 1, (rd | p) >> 1, idx + 1);
       }
     }
-  }
-  bool isOK(vector<int> state, const int row, const int col)
-  {
-    for (int i = 0; i < row; ++i)
-      if (state[i] == col || abs(row - i) == abs(col - state[i])) return false;
-    return true;
   }
 };
 
