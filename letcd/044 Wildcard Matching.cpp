@@ -7,8 +7,7 @@ class Solution {
 public:
   bool isMatch(const char *s, const char *p) {
     if (strlen(p) == 1 && p[0] == '*' || strlen(p) == 2 && p[0] == '?' && p[1] == '*' && strlen(s) > 0) return true;
-    const char *star = NULL;
-    const char *record = NULL;
+    const char *star = NULL, *record = NULL;
     while (*s)
     {
       if (*p == '?' || *p == *s){ p++; s++; continue; }
