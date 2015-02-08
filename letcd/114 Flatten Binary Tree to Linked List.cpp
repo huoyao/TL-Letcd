@@ -11,22 +11,21 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-void flat(TreeNode *rt,TreeNode *&pre)
-{
-  if (!rt) return;
-  if (pre) pre->right = rt;
-  pre = rt;
-  TreeNode *rec = rt->right;
-  flat(rt->left,pre);
-  rt->left = NULL;
-  flat(rec,pre);
-}
-
 class Solution {
 public:
   void flatten(TreeNode *root) {
     TreeNode *pre = NULL;
     flat(root, pre);
+  }
+  void flat(TreeNode *rt, TreeNode *&pre)
+  {
+    if (!rt) return;
+    if (pre) pre->right = rt;
+    pre = rt;
+    TreeNode *rec = rt->right;
+    flat(rt->left, pre);
+    rt->left = NULL;
+    flat(rec, pre);
   }
 };
 
