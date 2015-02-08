@@ -3,29 +3,31 @@
 #include <algorithm>
 using namespace std;
 
-void getit(vector<vector<int> > &res, vector<int> &rec, int cnt,int start, const int &n,const int &k)
-{
-  if (cnt == k)
-    res.push_back(rec);
-  else
-  {
-    for (int i =start; i <= n; ++i)
-    {
-      rec.push_back(i);
-      getit(res,rec,cnt+1,i+1,n,k);
-      rec.pop_back();
-    }
-  }
-}
-
 class Solution {
+private:
+  vector<vector<int> > res;
+  vector<int> rec;
+  int len, kk;
 public:
   vector<vector<int> > combine(int n, int k) {
-    vector<vector<int> > vec;
-    if (k <= 0 || n <= 0) return vec;
-    vector<int> rec;
-    getit(vec, rec, 0,1, n,k);
-    return vec;
+    len = n, kk = k;
+    if (len <= 0 || kk <= 0) return res;
+    getit(0,1);
+    return res;
+  }
+  void getit(int cnt, int start)
+  {
+    if (cnt == kk)
+      res.push_back(rec);
+    else
+    {
+      for (int i = start; i <= len; ++i)
+      {
+        rec.push_back(i);
+        getit(cnt + 1, i + 1);
+        rec.pop_back();
+      }
+    }
   }
 };
 
