@@ -18,17 +18,6 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-void build(ListNode *beg,int cnt,TreeNode **h)
-{
-  if (cnt <= 0 || !beg) return;
-  int mid = cnt >> 1,idx=mid;
-  ListNode *beg1 = beg;
-  while (idx--) beg1 = beg1->next;
-  *h = new TreeNode(beg1->val);
-  build(beg,mid,&((*h)->left));
-  build(beg1->next, cnt-mid-1, &((*h)->right));
-}
-
 class Solution {
 public:
   TreeNode *sortedListToBST(ListNode *head) {
@@ -39,6 +28,16 @@ public:
     while (end->next) { end = end->next; ++cnt; }
     build(head,cnt,&res);
     return res;
+  }
+  void build(ListNode *beg, int cnt, TreeNode **h)
+  {
+    if (cnt <= 0 || !beg) return;
+    int mid = cnt >> 1, idx = mid;
+    ListNode *beg1 = beg;
+    while (idx--) beg1 = beg1->next;
+    *h = new TreeNode(beg1->val);
+    build(beg, mid, &((*h)->left));
+    build(beg1->next, cnt - mid - 1, &((*h)->right));
   }
 };
 
