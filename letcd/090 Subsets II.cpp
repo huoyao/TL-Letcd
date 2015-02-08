@@ -3,26 +3,26 @@
 #include <algorithm>
 using namespace std;
 
-void subStrII(int idx, vector<vector<int> > &res, vector<int> &rec, const vector<int> &S)
-{
-  res.push_back(rec);
-  for (int i = idx; i < S.size(); ++i)
-  {
-    if (i != idx && S[i] == S[i - 1]) continue;
-    rec.push_back(S[i]);
-    subStrII(i+1,res,rec,S);
-    rec.pop_back();
-  }
-}
-
 class Solution {
+private:
+  vector<vector<int> > res;
+  vector<int> rec;
 public:
   vector<vector<int> > subsetsWithDup(vector<int> &S) {
-    vector<vector<int> > res;
-    vector<int> rec;
     sort(S.begin(),S.end());
-    subStrII(0,res,rec,S);
+    subStrII(0,S);
     return res;
+  }
+  void subStrII(int idx, const vector<int> &S)
+  {
+    res.push_back(rec);
+    for (int i = idx; i < S.size(); ++i)
+    {
+      if (i != idx && S[i] == S[i - 1]) continue;
+      rec.push_back(S[i]);
+      subStrII(i + 1, S);
+      rec.pop_back();
+    }
   }
 };
 
