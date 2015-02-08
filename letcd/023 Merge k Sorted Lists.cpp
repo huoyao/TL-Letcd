@@ -11,11 +11,6 @@ struct ListNode {
   ListNode(int x) : val(x), next(NULL) {}
 };
 
-bool cmp(const ListNode *l, const ListNode *r)
-{
-  return l->val > r->val;
-}
-
 class Solution {
 public:
   ListNode *mergeKLists(vector<ListNode *> &lists) {
@@ -43,6 +38,10 @@ public:
       else lists.pop_back();
     }
     return head->next;
+  }
+  static bool cmp(const ListNode *l, const ListNode *r)
+  {
+    return l->val > r->val;
   }
 };
 
