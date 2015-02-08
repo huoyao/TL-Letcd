@@ -24,7 +24,6 @@ public:
     vector<vector<int> > vec;
     if (k <= 0 || n <= 0) return vec;
     vector<int> rec;
-    vector<bool> used(n+1, false);
     getit(vec, rec, 0,1, n,k);
     return vec;
   }

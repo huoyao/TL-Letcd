@@ -3,34 +3,36 @@
 #include <algorithm>
 using namespace std;
 
-void getit(vector<vector<int> > &res, vector<int> &rec, int cnt, int start, const int n, const int &k,const vector<int> &S)
-{
-  if (cnt == k)
-    res.push_back(rec);
-  else
+class Solution {
+private:
+  vector<vector<int> > res;
+  vector<int> rec;
+  int len;
+public:
+  void getit(int cnt, int start, const int &k, const vector<int> &S)
   {
-    for (int i = start; i < n; ++i)
+    if (cnt == k)
+      res.push_back(rec);
+    else
     {
-      rec.push_back(S[i]);
-      getit(res, rec, cnt + 1, i + 1, n, k,S);
-      rec.pop_back();
+      for (int i = start; i < len; ++i)
+      {
+        rec.push_back(S[i]);
+        getit(cnt + 1, i + 1, k, S);
+        rec.pop_back();
+      }
     }
   }
-}
-
-class Solution {
-public:
   vector<vector<int> > subsets(vector<int> &S) {
-    vector<vector<int> > vec;
-    vector<int> tmp;
-    vec.push_back(tmp);
-    if (S.size()<=0) return vec;
-    sort(S.begin(),S.end());
-    for (int i = 1; i <= S.size(); ++i)
+    len = S.size();
+    res.push_back(rec);
+    if (len <= 0) return res;
+    sort(S.begin(), S.end());
+    for (int i = 1; i <= len; ++i)
     {
-      getit(vec, tmp, 0, 0, S.size(), i,S);
+      getit(0, 0, i, S);
     }
-    return vec;
+    return res;
   }
 };
 
