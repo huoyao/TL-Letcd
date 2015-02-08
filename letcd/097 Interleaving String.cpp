@@ -12,10 +12,10 @@ public:
     vector<vector<bool> > res(len1 + 1, vector<bool>(len2 + 1, false));
     res[0][0] = true;
     for (int i = 1; i <= len1; ++i)
-      if (s1[i-1] == s3[i-1]) res[i][0] = true;
+      if (s1[i - 1] == s3[i - 1]) res[i][0] = true;
       else break;
     for (int i = 1; i <= len2; ++i)
-      if (s2[i-1] == s3[i-1]) res[0][i] = true;
+      if (s2[i - 1] == s3[i - 1]) res[0][i] = true;
       else break;
     for (int i = 1; i <= len1; ++i)
     {
@@ -23,7 +23,7 @@ public:
       {
         int k = i + j;
         if (s1[i - 1] == s3[k - 1]) res[i][j] = res[i - 1][j] || res[i][j];
-        if (s2[j - 1] == s3[k - 1]) res[i][j] = res[i][j-1] || res[i][j];
+        if (s2[j - 1] == s3[k - 1]) res[i][j] = res[i][j - 1] || res[i][j];
       }
     }
     return res[len1][len2];
