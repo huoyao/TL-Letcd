@@ -12,22 +12,16 @@ struct TreeNode {
 };
 
 class Solution {
-private:
-  bool syn = true;
 public:
-  void check(TreeNode *p,TreeNode *q)
-  {
-    if (!p && !q) return;
-    if (!p && q || p && !q || p->val!=q->val) { syn = false; return; }
-    if (!syn) return;
-    check(p->left,q->right);
-    check(p->right,q->left);
-  }
-
   bool isSymmetric(TreeNode *p) {
-    if (!p) return syn;
-    check(p->left,p->right);
-    return syn;
+    if (!p) return true;
+    return check(p->left,p->right);
+  }
+  bool check(TreeNode *p, TreeNode *q)
+  {
+    if (!p && !q) return true;
+    if (!p && q || p && !q || p->val != q->val) return false;
+    return check(p->left, q->right) && check(p->right, q->left);
   }
 };
 
