@@ -3,30 +3,6 @@
 #include <algorithm>
 using namespace std;
 
-int findl(int a[], int l, int r, const int &target)
-{
-  while (l <= r)
-  {
-    int mid = (l + r) >> 1;
-    if (a[mid] >= target) r = mid - 1;
-    else l = mid + 1;
-  }
-  if (a[l] == target) return l;
-  else return -1;
-}
-
-int findr(int a[], int l, int r, const int &target)
-{
-  while (l <= r)
-  {
-    int mid = (l + r) >> 1;
-    if (a[mid] > target) r = mid - 1;
-    else l = mid + 1;
-  }
-  if (a[r] == target) return r;
-  else return -1;
-}
-
 class Solution {
 public:
   vector<int> searchRange(int A[], int n, int target) {
@@ -38,6 +14,28 @@ public:
     res.push_back(lidx);
     res.push_back(ridx);
     return res;
+  }
+  int findl(int a[], int l, int r, const int &target)
+  {
+    while (l <= r)
+    {
+      int mid = (l + r) >> 1;
+      if (a[mid] >= target) r = mid - 1;
+      else l = mid + 1;
+    }
+    if (a[l] == target) return l;
+    else return -1;
+  }
+  int findr(int a[], int l, int r, const int &target)
+  {
+    while (l <= r)
+    {
+      int mid = (l + r) >> 1;
+      if (a[mid] > target) r = mid - 1;
+      else l = mid + 1;
+    }
+    if (a[r] == target) return r;
+    else return -1;
   }
 };
 
