@@ -4,30 +4,31 @@
 #include <algorithm>
 using namespace std;
 
-void getre(int map[],int idx,vector<string> &st,string &mid,string &digits)
-{
-  if (idx == digits.length())
-  {
-    st.push_back(mid);
-    return;
-  }
-  int ind = digits[idx] - '0';
-  for (int i = map[ind-1]; i < map[ind]; ++i)
-  {
-    mid.push_back('a'+i);
-    getre(map, idx+1, st, mid, digits);
-    mid.pop_back();  //c++XI
-  }
-}
-
 class Solution {
+private:
+  vector<string> st;
+  vector<int> mapidx;
+  string mid;
 public:
   vector<string> letterCombinations(string digits) {
-    int mapidx[10] = {0,0,3,6,9,12,15,19,22,26};
-    vector<string> st;
-    string mid="";
-    getre(mapidx,0,st,mid,digits);
+    mapidx = {0,0,3,6,9,12,15,19,22,26};
+    getre(0,digits);
     return st;
+  }
+  void getre(int idx,string &digits)
+  {
+    if (idx == digits.length())
+    {
+      st.push_back(mid);
+      return;
+    }
+    int ind = digits[idx] - '0';
+    for (int i = mapidx[ind - 1]; i < mapidx[ind]; ++i)
+    {
+      mid.push_back('a' + i);
+      getre(idx + 1, digits);
+      mid.pop_back();  //c++XI
+    }
   }
 };
 
