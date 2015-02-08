@@ -15,7 +15,20 @@ class Solution {
 private:
   vector<vector<int> > res;
 public:
-  void scan(vector<TreeNode *> &v1, vector<TreeNode *> &v2, vector<vector<int> > &res)
+  vector<vector<int> > zigzagLevelOrder(TreeNode *root) {
+    vector<TreeNode *> v1, v2;
+    if (!root) return res;
+    v1.push_back(root);
+    while (v1.size() || v2.size())
+    {
+      v2.clear();
+      scan(v1, v2);
+      v1.clear();
+      scan(v2, v1);
+    }
+    return res;
+  }
+  void scan(vector<TreeNode *> &v1, vector<TreeNode *> &v2)
   {
     vector<int> rec;
     if (v1.size() == 0) return;
@@ -34,20 +47,6 @@ public:
       }
     }
     res.push_back(rec);
-  }
-
-  vector<vector<int> > zigzagLevelOrder(TreeNode *root) {
-    vector<TreeNode *> v1, v2;
-    if (!root) return res;
-    v1.push_back(root);
-    while (v1.size() || v2.size())
-    {
-      v2.clear();
-      scan(v1, v2, res);
-      v1.clear();
-      scan(v2, v1, res);
-    }
-    return res;
   }
 };
 
