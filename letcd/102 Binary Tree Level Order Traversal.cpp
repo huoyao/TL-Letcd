@@ -15,7 +15,11 @@ class Solution {
 private:
   vector<vector<int> > res;
 public:
-  void levelTra(TreeNode *rt,int level)
+  vector<vector<int> > levelOrder(TreeNode *root) {
+    levelTra(root,0);
+    return res;
+  }
+  void levelTra(TreeNode *rt, int level)
   {
     if (!rt) return;
     if (level == res.size())
@@ -24,12 +28,8 @@ public:
       res.push_back(v);
     }
     res[level].push_back(rt->val);
-    levelTra(rt->left,level+1);
-    levelTra(rt->right,level+1);
-  }
-  vector<vector<int> > levelOrder(TreeNode *root) {
-    levelTra(root,0);
-    return res;
+    levelTra(rt->left, level + 1);
+    levelTra(rt->right, level + 1);
   }
 };
 
