@@ -10,13 +10,6 @@ struct ListNode {
   ListNode(int x) : val(x), next(NULL) {}
 };
 
-ListNode *swap(ListNode *l1, ListNode *l2)
-{
-  l1->next = l2->next;
-  l2->next = l1;
-  return l2;
-}
-
 class Solution {
 public:
   ListNode *swapPairs(ListNode *head) {
@@ -25,6 +18,12 @@ public:
     for (ListNode *cur = beg; cur->next && cur->next->next; cur = cur->next->next)
       cur->next = swap(cur->next,cur->next->next);
     return beg->next;
+  }
+  ListNode *swap(ListNode *l1, ListNode *l2)
+  {
+    l1->next = l2->next;
+    l2->next = l1;
+    return l2;
   }
 };
 
