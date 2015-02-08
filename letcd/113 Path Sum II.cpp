@@ -11,34 +11,35 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-void sumpath(TreeNode *rt,int rec,vector<int> &vecrec,vector<vector<int> > &res,const int &sum)
-{
-  if (!rt) return;
-  if (!rt->left && !rt->right && rec == sum) res.push_back(vecrec);
-  TreeNode *tmp = rt->left;
-  if (!tmp) tmp = rt->right;
-  while (tmp)
-  {
-    rec += tmp->val;
-    vecrec.push_back(tmp->val);
-    sumpath(tmp, rec, vecrec, res, sum);
-    rec -= tmp->val;
-    vecrec.pop_back();
-    if (tmp == rt->left) tmp = rt->right;
-    else break;
-  }
-}
-
 class Solution {
+private:
+  vector<vector<int> > res;
+  vector<int> vecrec;
+  int rec;
 public:
   vector<vector<int> > pathSum(TreeNode *root, int sum) {
-    vector<vector<int> > res;
     if (!root) return res;
-    vector<int> vecrec;
-    int rec = root->val;
+    rec = root->val;
     vecrec.push_back(root->val);
-    sumpath(root,rec,vecrec,res,sum);
+    sumpath(root, sum);
     return res;
+  }
+  void sumpath(TreeNode *rt, const int &sum)
+  {
+    if (!rt) return;
+    if (!rt->left && !rt->right && rec == sum) res.push_back(vecrec);
+    TreeNode *tmp = rt->left;
+    if (!tmp) tmp = rt->right;
+    while (tmp)
+    {
+      rec += tmp->val;
+      vecrec.push_back(tmp->val);
+      sumpath(tmp, sum);
+      rec -= tmp->val;
+      vecrec.pop_back();
+      if (tmp == rt->left) tmp = rt->right;
+      else break;
+    }
   }
 };
 
