@@ -13,7 +13,7 @@ public:
   }
   void find(vector<int> &num, int beg)
   {
-    if (beg >= num.size())
+    if (beg == num.size()-1)
     {
       res.push_back(num);
       return;
