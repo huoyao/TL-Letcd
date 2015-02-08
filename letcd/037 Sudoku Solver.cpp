@@ -3,36 +3,6 @@
 #include <algorithm>
 using namespace std;
 
-bool fillsudo(int i, int j, vector<vector<char> > &bd, vector<vector<bool> > &row, vector<vector<bool> > &col, vector<vector<bool> > &block)
-{
-  if (j == 9){ ++i; j = 0; }
-  if (i == 9 && j == 0) return true;
-  else if (bd[i][j] != '.')
-    return fillsudo(i, j+1, bd, row, col, block);
-  else
-  {
-    for (int k = 0; k < 9; ++k)
-    {
-      if (row[i][k] && col[j][k] && block[i - i % 3 + j / 3][k])
-      {
-        bd[i][j] = '1' + k;
-        row[i][k] = false;
-        col[j][k] = false;
-        block[i - i % 3 + j / 3][k] = false;
-        if (fillsudo(i, j + 1, bd, row, col, block)) return true;
-        else
-        {
-          bd[i][j] = '.';
-          row[i][k] = true;
-          col[j][k] = true;
-          block[i - i % 3 + j / 3][k] = true;
-        }
-      }
-    }
-    return false;
-  }
-}
-
 class Solution {
 public:
   void solveSudoku(vector<vector<char> > &board) {
@@ -47,6 +17,35 @@ public:
       }
     }
     fillsudo(0,0,board,row,col,block);
+  }
+  bool fillsudo(int i, int j, vector<vector<char> > &bd, vector<vector<bool> > &row, vector<vector<bool> > &col, vector<vector<bool> > &block)
+  {
+    if (j == 9){ ++i; j = 0; }
+    if (i == 9 && j == 0) return true;
+    else if (bd[i][j] != '.')
+      return fillsudo(i, j + 1, bd, row, col, block);
+    else
+    {
+      for (int k = 0; k < 9; ++k)
+      {
+        if (row[i][k] && col[j][k] && block[i - i % 3 + j / 3][k])
+        {
+          bd[i][j] = '1' + k;
+          row[i][k] = false;
+          col[j][k] = false;
+          block[i - i % 3 + j / 3][k] = false;
+          if (fillsudo(i, j + 1, bd, row, col, block)) return true;
+          else
+          {
+            bd[i][j] = '.';
+            row[i][k] = true;
+            col[j][k] = true;
+            block[i - i % 3 + j / 3][k] = true;
+          }
+        }
+      }
+      return false;
+    }
   }
 };
 
