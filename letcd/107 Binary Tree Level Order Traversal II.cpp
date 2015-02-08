@@ -12,23 +12,6 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-void levelorder(vector<TreeNode *> &rec,stack<vector<int> > &stk)
-{
-  while (rec.size())
-  {
-    vector<int> tmp;
-    vector<TreeNode *> rec1;
-    for (int i = 0; i < rec.size(); ++i)
-    {
-      tmp.push_back(rec[i]->val);
-      if (rec[i]->left) rec1.push_back(rec[i]->left);
-      if (rec[i]->right) rec1.push_back(rec[i]->right);
-    }
-    stk.push(tmp);
-    rec = rec1;
-  }
-}
-
 class Solution {
 public:
   vector<vector<int> > levelOrderBottom(TreeNode *root) {
@@ -46,6 +29,22 @@ public:
     }
     return res;
   } 
+  void levelorder(vector<TreeNode *> &rec, stack<vector<int> > &stk)
+  {
+    while (rec.size())
+    {
+      vector<int> tmp;
+      vector<TreeNode *> rec1;
+      for (int i = 0; i < rec.size(); ++i)
+      {
+        tmp.push_back(rec[i]->val);
+        if (rec[i]->left) rec1.push_back(rec[i]->left);
+        if (rec[i]->right) rec1.push_back(rec[i]->right);
+      }
+      stk.push(tmp);
+      rec = rec1;
+    }
+  }
 };
 
 int main()
