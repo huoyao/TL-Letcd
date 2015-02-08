@@ -11,15 +11,6 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-void build(const vector<int> &num,TreeNode **h,const int beg,const int end)
-{
-  if (beg > end) return;
-  int mid = (beg + end) >> 1;
-  *h = new TreeNode(num[mid]);
-  build(num,&((*h)->left),beg,mid-1);
-  build(num,&((*h)->right),mid+1,end);
-}
-
 class Solution {
 public:
   TreeNode *sortedArrayToBST(vector<int> &num) {
@@ -27,6 +18,14 @@ public:
     if (num.size() == 0) return h;
     build(num,&h,0,num.size()-1);
     return h;
+  }
+  void build(const vector<int> &num, TreeNode **h, const int beg, const int end)
+  {
+    if (beg > end) return;
+    int mid = (beg + end) >> 1;
+    *h = new TreeNode(num[mid]);
+    build(num, &((*h)->left), beg, mid - 1);
+    build(num, &((*h)->right), mid + 1, end);
   }
 };
 
