@@ -9,6 +9,17 @@ private:
   vector<int> rec;
   int len;
 public:
+  vector<vector<int> > subsets(vector<int> &S) {
+    len = S.size();
+    res.push_back(rec);
+    if (len <= 0) return res;
+    sort(S.begin(), S.end());
+    for (int i = 1; i <= len; ++i)
+    {
+      getit(0, 0, i, S);
+    }
+    return res;
+  }
   void getit(int cnt, int start, const int &k, const vector<int> &S)
   {
     if (cnt == k)
@@ -22,17 +33,6 @@ public:
         rec.pop_back();
       }
     }
-  }
-  vector<vector<int> > subsets(vector<int> &S) {
-    len = S.size();
-    res.push_back(rec);
-    if (len <= 0) return res;
-    sort(S.begin(), S.end());
-    for (int i = 1; i <= len; ++i)
-    {
-      getit(0, 0, i, S);
-    }
-    return res;
   }
 };
 
