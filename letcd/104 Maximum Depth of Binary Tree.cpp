@@ -13,18 +13,19 @@ struct TreeNode {
 
 class Solution {
 private:
-  int dep = 0;
+  int dep;
 public:
-  void depth(TreeNode *root,int level)
+  int maxDepth(TreeNode *root) {
+    dep = 0;
+    depth(root,1);
+    return dep;
+  }
+  void depth(TreeNode *root, int level)
   {
     if (!root) return;
     if (level > dep) dep = level;
-    if (root->left) depth(root->left,level+1);
-    if (root->right) depth(root->right,level+1);
-  }
-  int maxDepth(TreeNode *root) {
-    depth(root,1);
-    return dep;
+    if (root->left) depth(root->left, level + 1);
+    if (root->right) depth(root->right, level + 1);
   }
 };
 
