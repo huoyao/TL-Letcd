@@ -12,21 +12,15 @@ struct TreeNode {
 };
 
 class Solution {
-private:
-  bool same = true;
 public:
-  void check(TreeNode *p, TreeNode *q)
-  {
-    if (!q && !p) return;
-    if (q && !p || !q && p|| p->val != q->val) same = false;
-    if (!same) return;
-    if (p->left || q->left) check(p->left, q->left);
-    if (p->right || q->right) check(p->right,q->right);
-  }
-
   bool isSameTree(TreeNode *p, TreeNode *q) {
-    check(p,q);
-    return same;
+    return check(p,q);
+  }
+  bool check(TreeNode *p, TreeNode *q)
+  {
+    if (!q && !p) return true;
+    if (q && !p || !q && p || p->val != q->val) return false;
+    return check(p->left, q->left) && check(p->right, q->right);
   }
 };
 
