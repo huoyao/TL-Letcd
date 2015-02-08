@@ -12,29 +12,23 @@ struct TreeLinkNode {
 
 class Solution {
 public:
-  void link(TreeLinkNode *&pt, TreeLinkNode *root)
-  {
-    TreeLinkNode *tmp=root;
-    while (tmp)
-    {
-      if (tmp->left) { pt->next = tmp->left; return; }
-      if (tmp->right) { pt->next = tmp->right; return; }
-      tmp = tmp->next;
-    }
-  }
   void connect(TreeLinkNode *root) {
-    if (!root) return;
-    if (root->left)
-    {
-      root->left->next = root->right;
-      if (!root->right) link(root->left,root->next);
+    TreeLinkNode *nextHead = new TreeLinkNode(0);
+    nextHead->next = root;
+    while (nextHead->next){
+      TreeLinkNode *tail = nextHead,*nxt = nextHead->next;
+      nextHead->next = NULL;
+      for (; nxt; nxt = nxt->next){
+        if (nxt->left){
+          tail->next = nxt->left;
+          tail = tail->next;
+        }
+        if (nxt->right){
+          tail->next = nxt->right;
+          tail = tail->next;
+        }
+      }
     }
-    if (root->right)
-    {
-      link(root->right, root->next);
-    }
-    connect(root->right);
-    connect(root->left);
   }
 };
 
