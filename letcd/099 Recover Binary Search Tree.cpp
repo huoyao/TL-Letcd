@@ -3,7 +3,6 @@
 #include <algorithm>
 using namespace std;
 
-
 // Definition for binary tree
 struct TreeNode {
   int val;
@@ -16,7 +15,11 @@ class Solution {
 public:
   bool stop = false;
   TreeNode *mis1 = NULL, *mis2 = NULL, *pre = NULL;
-
+  void recoverTree(TreeNode *root) {
+    inoder(root);
+    if (mis1 && mis2)
+      swap(mis1->val, mis2->val);
+  }
   void  inoder(TreeNode *rt)
   {
     if (stop || !rt) return;
@@ -38,11 +41,6 @@ public:
     pre = rt;
     if (rt->right)
       inoder(rt->right);
-  }
-  void recoverTree(TreeNode *root) {
-    inoder(root);
-    if (mis1 && mis2)
-      swap(mis1->val, mis2->val);
   }
 };
 
