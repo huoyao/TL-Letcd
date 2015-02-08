@@ -26,7 +26,6 @@ public:
     if (!has && root->left) doHas(root->left, sum, rec + root->left->val);
     if (!has && root->right) doHas(root->right, sum, rec + root->right->val);
   }
-
   bool hasPathSum(TreeNode *root, int sum) {
     if (!root) return false;
     doHas(root,sum,root->val);
