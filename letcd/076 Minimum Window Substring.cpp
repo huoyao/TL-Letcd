@@ -2,15 +2,16 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include <unordered_map>
 using namespace std;
 
 class Solution {
 public:
   string minWindow(string S, string T) {
-    int slen = S.length(), tlen = T.length(),start,end,minwindow=slen+1,cnt=0;
+    int slen = S.length(), tlen = T.length(), start, end, minwindow = slen + 1, cnt = 0;
     string res = "";
     if (slen == 0 || tlen == 0) return res;
-    vector<int> needstr(256, 0), hasstr(256,0);
+    vector<int> needstr(256, 0), hasstr(256, 0);
     for (int i = 0; i < tlen; ++i)
       ++needstr[T[i]];
     for (start = 0, end = 0; end < slen; ++end)
@@ -32,14 +33,13 @@ public:
         if (len < minwindow)
         {
           minwindow = len;
-          res = S.substr(start,len);
+          res = S.substr(start, len);
         }
       }
     }
     return res;
   }
 };
-
 int main()
 {
   Solution slu;
