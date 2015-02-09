@@ -7,19 +7,23 @@ using namespace std;
 class Solution {
 public:
   int longestConsecutive(vector<int> &num) {
-    if (num.size() < 2) return num.size();
     int res = 0;
-    unordered_set<int> exit_elem,vist;
-    for (int i = 0; i < num.size(); ++i)
-      exit_elem.insert(num[i]);
+    unordered_map<int, int> rangesum;
     for (int i = 0; i < num.size(); ++i)
     {
-      if (vist.count(num[i])) continue;
-      int target = num[i],maxcnt=1;
-      while (exit_elem.count(--target)){ ++maxcnt; vist.insert(target); }
-      target = num[i];
-      while (exit_elem.count(++target)){ ++maxcnt; vist.insert(target); }
-      res = max(res,maxcnt);
+      int n = num[i];
+      if (!rangesum.count(n))
+      {
+        int left = rangesum.count(n-1) ? rangesum[n-1] : 0;
+        int right = rangesum.count(n+1) ? rangesum[n + 1] : 0;
+        int sum = left + right + 1;
+        rangesum[n] = sum;
+        res = max(res, sum);
+        rangesum[n - left] = sum;
+        rangesum[n + right] = sum;
+      }
+      else
+        continue;
     }
     return res;
   }
@@ -28,9 +32,9 @@ public:
 int main()
 {
   Solution slu;
-  vector<int> input = { 100, 4, 200, 1, 3, 2 };
+  vector<int> input = { 0,0,-1};
   int target = 9;
   int res = slu.longestConsecutive(input);
-  cout << res<<endl;
+  cout << res << endl;
   system("pause");
 }
