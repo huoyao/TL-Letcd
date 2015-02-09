@@ -10,22 +10,6 @@ class Solution {
 private:
   vector<vector<string> > res;
 public:
-  void build(unordered_map<string, vector<string> > &preword,vector<string> &path,const string &end)
-  {
-    if (preword[end].size() == 0)
-    {
-      vector<string> tmp = path;
-      reverse(tmp.begin(),tmp.end());
-      res.push_back(tmp);
-      return;
-    }
-    for (auto it = preword[end].begin(); it != preword[end].end(); ++it)
-    {
-      path.push_back(*it);
-      build(preword, path, *it);
-      path.pop_back();
-    }
-  }
   vector<vector<string> > findLadders(string start, string end, unordered_set<string> &dict) {
     if (start.empty() || start.length() != end.length()) return res;
     unordered_map<string, vector<string> > preword;
@@ -67,6 +51,22 @@ public:
     vector<string> path = {end};
     build(preword,path,end);
     return res;
+  }
+  void build(unordered_map<string, vector<string> > &preword, vector<string> &path, const string &end)
+  {
+    if (preword[end].size() == 0)
+    {
+      vector<string> tmp = path;
+      reverse(tmp.begin(), tmp.end());
+      res.push_back(tmp);
+      return;
+    }
+    for (auto it = preword[end].begin(); it != preword[end].end(); ++it)
+    {
+      path.push_back(*it);
+      build(preword, path, *it);
+      path.pop_back();
+    }
   }
 };
 
