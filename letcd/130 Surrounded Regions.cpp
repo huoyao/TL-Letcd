@@ -8,6 +8,28 @@ class Solution {
 private:
   int width, length;
 public:
+  void solve(vector<vector<char> > &board) {
+    width = board.size(),length=width?board[0].size():0;
+    if (width == 0 || length==0)  return;
+    for (int i = 0; i < length; ++i)
+    {
+      if (board[0][i] == 'O') bfsBoundary(board, 0, i);
+      if (board[width - 1][i] == 'O') bfsBoundary(board, width - 1, i);
+    }
+    for (int i = 0; i < width; ++i)
+    {
+      if (board[i][0] == 'O') bfsBoundary(board, i, 0);
+      if (board[i][length - 1] == 'O') bfsBoundary(board, i, length - 1);
+    }
+    for (int i = 0; i < width; ++i)
+    {
+      for (int j = 0; j < length; ++j)
+      {
+        if (board[i][j] == 'O') board[i][j] = 'X';
+        else if (board[i][j] == 'B') board[i][j] = 'O';
+      }
+    }
+  }
   void bfsBoundary(vector<vector<char> >& board, int w, int l)
   {
     deque<pair<int, int> > q;
@@ -29,29 +51,6 @@ public:
           q.push_back(make_pair(adjW, adjL));
           board[adjW][adjL] = 'B';
         }
-      }
-    }
-  }
-
-  void solve(vector<vector<char> > &board) {
-    width = board.size(),length=width?board[0].size():0;
-    if (width == 0 || length==0)  return;
-    for (int i = 0; i < length; ++i)
-    {
-      if (board[0][i] == 'O') bfsBoundary(board, 0, i);
-      if (board[width - 1][i] == 'O') bfsBoundary(board, width - 1, i);
-    }
-    for (int i = 0; i < width; ++i)
-    {
-      if (board[i][0] == 'O') bfsBoundary(board, i, 0);
-      if (board[i][length - 1] == 'O') bfsBoundary(board, i, length - 1);
-    }
-    for (int i = 0; i < width; ++i)
-    {
-      for (int j = 0; j < length; ++j)
-      {
-        if (board[i][j] == 'O') board[i][j] = 'X';
-        else if (board[i][j] == 'B') board[i][j] = 'O';
       }
     }
   }
