@@ -15,6 +15,10 @@ class Solution {
 private:
   int maxsum = INT_MIN;
 public:
+  int maxPathSum(TreeNode *root) {
+    pathSum(root);
+    return maxsum;
+  }
   int pathSum(TreeNode *root)
   {
     if (!root) return 0;
@@ -27,10 +31,6 @@ public:
     if (left > right && left > 0) return root->val + left;
     if (left<right && right>0) return root->val + right;
     return root->val;
-  }
-  int maxPathSum(TreeNode *root) {
-    pathSum(root);
-    return maxsum;
   }
 };
 
