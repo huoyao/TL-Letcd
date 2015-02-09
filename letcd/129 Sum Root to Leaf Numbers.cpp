@@ -11,19 +11,6 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-void dfs(TreeNode *root,int rec,int &res)
-{
-  if (!root->left && !root->right)
-  {
-    res += rec;
-    return;
-  }
-  if (root->left)
-    dfs(root->left,rec*10+root->left->val,res);
-  if (root->right)
-    dfs(root->right,rec*10+root->right->val,res);
-}
-
 class Solution {
 public:
   int sumNumbers(TreeNode *root) {
@@ -31,6 +18,18 @@ public:
     int rec = root->val,res=0;
     dfs(root,rec,res);
     return res;
+  }
+  void dfs(TreeNode *root, int rec, int &res)
+  {
+    if (!root->left && !root->right)
+    {
+      res += rec;
+      return;
+    }
+    if (root->left)
+      dfs(root->left, rec * 10 + root->left->val, res);
+    if (root->right)
+      dfs(root->right, rec * 10 + root->right->val, res);
   }
 };
 
