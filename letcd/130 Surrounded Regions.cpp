@@ -6,45 +6,54 @@ using namespace std;
 
 class Solution {
 private:
-  int m, n;
+  int width, length;
 public:
-  void dfs(vector<vector<char>> &board, int x, int y, vector<vector<bool> > &used)
+  void bfsBoundary(vector<vector<char> >& board, int w, int l)
   {
-    queue<int> qx, qy;
-    qx.push(x);
-    qy.push(y);
-    while (!qx.empty())
-    {
-      int t = qx.front(), k = qy.front();
-      qx.pop();
-      qy.pop();
-      if (board[t][k] == 'X' || board[t][k] == 'U') continue;
-      board[t][k] = 'U';
-      used[t][k] = true;
-      if (t > 0 && !used[t - 1][k]) { qx.push(t - 1); qy.push(k); };
-      if (t<m - 1 && !used[t + 1][k]) { qx.push(t + 1); qy.push(k); };
-      if (k>0 && !used[t][k-1]) { qx.push(t); qy.push(k-1); };
-      if (k<n - 1 && !used[t][k+1]) { qx.push(t); qy.push(k+1); };
+    deque<pair<int, int> > q;
+    q.push_back(make_pair(w, l));
+    board[w][l] = 'B';
+    while (!q.empty()) {
+      pair<int, int> cur = q.front();
+      q.pop_front();
+      pair<int, int> adjs[4] = { { cur.first - 1, cur.second },
+      { cur.first + 1, cur.second },
+      { cur.first, cur.second - 1 },
+      { cur.first, cur.second + 1 } };
+      for (int i = 0; i < 4; ++i)
+      {
+        int &adjW = adjs[i].first;
+        int &adjL = adjs[i].second;
+        if (adjW >= 0 && adjW < width && adjL >= 0 && adjL < length
+          && board[adjW][adjL] == 'O') {
+          q.push_back(make_pair(adjW, adjL));
+          board[adjW][adjL] = 'B';
+        }
+      }
     }
   }
-  void solve(vector<vector<char>> &board) {
-    m = board.size();
-    n = (m!=0 ? board[0].size() : 0);
-    if (m == 0 || n == 0) return;
-    vector<vector<bool> > used(m,vector<bool>(n,false));
-    for (int i = 0; i < n; ++i)
+
+  void solve(vector<vector<char> > &board) {
+    width = board.size(),length=width?board[0].size():0;
+    if (width == 0 || length==0)  return;
+    for (int i = 0; i < length; ++i)
     {
-      dfs(board,0,i,used);
-      dfs(board,m-1,i,used);
+      if (board[0][i] == 'O') bfsBoundary(board, 0, i);
+      if (board[width - 1][i] == 'O') bfsBoundary(board, width - 1, i);
     }
-    for (int i = 1; i < m-1; ++i)
+    for (int i = 0; i < width; ++i)
     {
-      dfs(board,i,0,used);
-      dfs(board,i,n-1,used);
+      if (board[i][0] == 'O') bfsBoundary(board, i, 0);
+      if (board[i][length - 1] == 'O') bfsBoundary(board, i, length - 1);
     }
-    for (int i = 0; i < m; ++i)
-       for (int j = 0; j < n; ++j)
-         board[i][j] = board[i][j] == 'U' ? 'O' : 'X';
+    for (int i = 0; i < width; ++i)
+    {
+      for (int j = 0; j < length; ++j)
+      {
+        if (board[i][j] == 'O') board[i][j] = 'X';
+        else if (board[i][j] == 'B') board[i][j] = 'O';
+      }
+    }
   }
 };
 
