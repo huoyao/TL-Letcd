@@ -20,13 +20,9 @@ public:
   BSTIterator(TreeNode *root) {
     cur = root;
   }
-
-  /** @return whether we have a next smallest number */
   bool hasNext() {
     return cur || !stk.empty();
   }
-
-  /** @return the next smallest number */
   int next() {
     while (!stk.empty() || cur)
     {
