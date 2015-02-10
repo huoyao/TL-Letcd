@@ -10,34 +10,6 @@ struct ListNode {
   ListNode(int x) : val(x), next(NULL) {}
 };
 
-ListNode *merge(ListNode *l, ListNode *r)
-{
-  ListNode *phead = new ListNode(0);
-  ListNode *rec = phead;
-  while (l && r)
-  {
-    if (l->val < r->val) { phead->next = l; l = l->next;}
-    else { phead->next = r; r = r->next; }
-    phead = phead->next;
-  }
-  if (l) phead->next = l;
-  else phead->next = r;
-  phead = rec->next;
-  delete(rec);
-  return phead;
-}
-
-ListNode * mergesort(ListNode *head)
-{
-  if (!head || !head->next) return head;
-  ListNode *pmid = head, *pend = head;
-  while (pend->next && pend->next->next) { pmid = pmid->next; pend = pend->next->next; }
-  pend = pmid->next;
-  pmid->next = NULL;
-  ListNode *l = mergesort(head), *r = mergesort(pend);
-  return merge(l,r);
-}
-
 class Solution {
 public:
   ListNode *sortList(ListNode *head) {
@@ -45,7 +17,32 @@ public:
     return mergesort(head);
     ListNode *pmid = head, *pend = head;
     while (pend->next && pend->next->next) { pmid = pmid->next; pend = pend->next->next; }
-
+  }
+  ListNode *merge(ListNode *l, ListNode *r)
+  {
+    ListNode *phead = new ListNode(0);
+    ListNode *rec = phead;
+    while (l && r)
+    {
+      if (l->val < r->val) { phead->next = l; l = l->next; }
+      else { phead->next = r; r = r->next; }
+      phead = phead->next;
+    }
+    if (l) phead->next = l;
+    else phead->next = r;
+    phead = rec->next;
+    delete(rec);
+    return phead;
+  }
+  ListNode * mergesort(ListNode *head)
+  {
+    if (!head || !head->next) return head;
+    ListNode *pmid = head, *pend = head;
+    while (pend->next && pend->next->next) { pmid = pmid->next; pend = pend->next->next; }
+    pend = pmid->next;
+    pmid->next = NULL;
+    ListNode *l = mergesort(head), *r = mergesort(pend);
+    return merge(l, r);
   }
 };
 
