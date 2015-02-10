@@ -7,23 +7,16 @@ using namespace std;
 class Solution {
 public:
   void reverseWords(string &s) {
-    int len = s.length(),i=0,j=len-1,idx=0,cnt=0,start,end;
-    bool first = true;
-    if (s.empty()) return;
-    while (i < j) swap(s[i++],s[j--]);
-    while (idx<len)
-    {
-      while (s[idx]==' ') ++idx;
-      start = i= idx;
-      if (idx == len) break;
-      while (idx<len && s[idx]!= ' ') ++idx;
-      end = j = idx - 1;
-      while (i < j) swap(s[i++],s[j--]);
-      if (!first) s[cnt++] = ' ';
-      first = false;
-      while (start <= end) s[cnt++] = s[start++];
+    string result = "";
+    for (int i = 0; i < s.length(); i++) {
+      if (s[i] == ' ') continue;
+      int pos = i;
+      while (i < s.length() && s[i] != ' ') i++;
+      if (result.length() > 0) result = ' ' + result;
+      result = s.substr(pos, i - pos) + result;
+      i--;
     }
-    s.erase(cnt,len-cnt);
+    s = result;
   }
 };
 
