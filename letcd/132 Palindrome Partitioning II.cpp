@@ -7,26 +7,16 @@ using namespace std;
 class Solution {
 public:
   int minCut(string s) {
-    int len = s.length();
-    if (len<2) return 0;
-    vector<int> minnum(len+1,0);
-    vector<vector<bool> > isPali(len,vector<bool>(len,false));
-    for (int i = len - 1; i >= 0; --i)
-    {
-      minnum[i] = len - i;
-      for (int j = i; j < len; ++j)
-      {
-        if (s[i] == s[j])
-        {
-          if (j - i < 2 || isPali[i + 1][j - 1])
-          {
-            isPali[i][j] = true;
-            minnum[i] = min(minnum[i],minnum[j+1]+1);
-          }
-        }
-      }
+    int n = s.size();
+    vector<int> cut(n + 1, 0);  // number of cuts for the first k characters
+    for (int i = 0; i <= n; i++) cut[i] = i - 1;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; i - j >= 0 && i + j < n && s[i - j] == s[i + j]; j++) // odd length palindrome
+        cut[i + j + 1] = min(cut[i + j + 1], 1 + cut[i - j]);
+      for (int j = 1; i - j + 1 >= 0 && i + j < n && s[i - j + 1] == s[i + j]; j++) // even length palindrome
+        cut[i + j + 1] = min(cut[i + j + 1], 1 + cut[i - j + 1]);
     }
-    return minnum[0] - 1;
+    return cut[n];
   }
 };
 
