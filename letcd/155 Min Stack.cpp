@@ -13,16 +13,13 @@ public:
     if (minstk.empty()) minstk.push(x);
     else { int t = minstk.top(); minstk.push(min(x,t)); }
   }
-
   void pop() {
     stk.pop();
     minstk.pop();
   }
-
   int top() {
     return stk.top();
   }
-
   int getMin() {
     return minstk.top();
   }
