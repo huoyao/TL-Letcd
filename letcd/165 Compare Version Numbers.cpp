@@ -4,14 +4,6 @@
 #include <string>
 using namespace std;
 
-int geti(const int &beg,string str,const int &len,int &end)
-{
-  if (beg >= len) return -1;
-  end = beg;
-  while (end<len && str[end] != '.') ++end;
-  return stoi(str.substr(beg,end));
-}
-
 class Solution {
 public:
   int compareVersion(string version1, string version2) {
@@ -31,6 +23,13 @@ public:
     if (beg1 < len1) return -1;
     if (beg2 < len2) return 1;
     return 0;
+  }
+  int geti(const int &beg, string str, const int &len, int &end)
+  {
+    if (beg >= len) return -1;
+    end = beg;
+    while (end<len && str[end] != '.') ++end;
+    return stoi(str.substr(beg, end));
   }
 };
 
