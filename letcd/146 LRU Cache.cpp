@@ -5,50 +5,39 @@
 #include <unordered_map>
 using namespace std;
 
-struct cacheNode{
-  int key, val;
-  cacheNode(const int &x, const  int &y) :key(x), val(y){}
-};
-
-class LRUCache{
-private:
-  int size;
-  list<cacheNode> cacheList;
-  unordered_map<int, list<cacheNode>::iterator> cacheMap;
+class LRUCache {
 public:
-  LRUCache(int capacity) {
-    size = capacity;
-  }
-
+  LRUCache(int capacity) : _capacity(capacity) {}
   int get(int key) {
-    if (cacheMap.count(key))
-    {
-      auto it = cacheMap[key];
-      cacheList.splice(cacheList.begin(), cacheList, it);
-      cacheMap[key] = cacheList.begin();
-      return cacheList.begin()->val;
-    }
-    else return -1;
+    auto it = cache.find(key);
+    if (it == cache.end()) return -1;
+    touch(it);
+    return it->second.first;
   }
-
   void set(int key, int value) {
-    if (cacheMap.count(key))
-    {
-      auto it = cacheMap[key];
-      it->val = value;
-      cacheList.splice(cacheList.begin(), cacheList, it);
-      cacheMap[key] = cacheList.begin();
-    }
-    else
-    {
-      if (cacheList.size() == size)
-      {
-        cacheMap.erase(cacheList.back().key);
-        cacheList.pop_back();
+    auto it = cache.find(key);
+    if (it != cache.end()) touch(it);
+    else {
+      if (cache.size() == _capacity) {
+        cache.erase(used.back());
+        used.pop_back();
       }
-      cacheList.push_front(cacheNode(key,value));
-      cacheMap[key] = cacheList.begin();
+      used.push_front(key);
     }
+    cache[key] = { value, used.begin() };
+  }
+private:
+  typedef list<int> LI;
+  typedef pair<int, LI::iterator> PII;
+  typedef unordered_map<int, PII> HIPII;
+  HIPII cache;
+  LI used;
+  int _capacity;
+  void touch(HIPII::iterator it) {
+    int key = it->first;
+    used.erase(it->second.second);
+    used.push_front(key);
+    it->second.second = used.begin();
   }
 };
 
