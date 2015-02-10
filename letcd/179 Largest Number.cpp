@@ -4,11 +4,7 @@
 #include <string>
 using namespace std;
 
-bool cmp(const string &a, const string &b)
-{
-  string c1 = a + b, c2 = b + a;
-  return c1 > c2;
-}
+
 
 class Solution {
 public:
@@ -24,6 +20,11 @@ public:
     while (res[idx] == '0') ++idx;
     if (idx==res.length()) return "0";  //mark
     return res;
+  }
+  static bool cmp(const string &a, const string &b)
+  {
+    string c1 = a + b, c2 = b + a;
+    return c1 > c2;
   }
 };
 
