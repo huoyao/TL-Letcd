@@ -615,7 +615,11 @@
     <ClCompile Include="188 Best Time to Buy and Sell Stock IV.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="189 Rotate Array.cpp" />
+    <ClCompile Include="189 Rotate Array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="190 Reverse Bits.cpp" />
+    <ClCompile Include="191 Number of 1 Bits.cpp" />
     <ClCompile Include="template.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
