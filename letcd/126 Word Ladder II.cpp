@@ -24,7 +24,7 @@ public:
     {
       crr = !crr;
       pre = !pre;
-      for (auto it = rec[pre].begin(); it != rec[pre].end(); ++it)
+      for(auto it = rec[pre].begin();it != rec[pre].end();++it)
         dict.erase(*it);
       rec[crr].clear();
       for (auto it = rec[pre].begin(); it != rec[pre].end(); ++it)
@@ -58,6 +58,8 @@ public:
     {
       vector<string> tmp = path;
       reverse(tmp.begin(), tmp.end());
+      if(res.size() && tmp.size() < res.back().size())
+        res.clear();
       res.push_back(tmp);
       return;
     }
@@ -75,7 +77,7 @@ int main()
   Solution slu;
   string start = "hit", end = "cog";
   unordered_set<string> dict = { "hot", "dot", "dog", "lot", "log" };
-  vector<vector<string> > res = slu.findLadders(start, end, dict);\
+  vector<vector<string> > res = slu.findLadders(start, end, dict);
   for (auto &t : res)
   {
     for (auto &k : t)
