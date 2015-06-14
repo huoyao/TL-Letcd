@@ -622,5 +622,8 @@
     <ClCompile Include="218 The Skyline Problem.cpp">
       <Filter>done</Filter>
     </ClCompile>
+    <ClCompile Include="220 Contains Duplicate III.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
