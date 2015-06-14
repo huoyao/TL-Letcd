@@ -586,14 +586,41 @@
     <ClCompile Include="207 Course Schedule .cpp">
       <Filter>done</Filter>
     </ClCompile>
-    <ClCompile Include="208 Implement Trie.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="210 Course Schedule II.cpp">
+      <Filter>done</Filter>
     </ClCompile>
     <ClCompile Include="209 Minimum Size Subarray Sum .cpp">
-      <Filter>Source Files</Filter>
+      <Filter>done</Filter>
     </ClCompile>
-    <ClCompile Include="210 Course Schedule II.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="208 Implement Trie.cpp">
+      <Filter>done</Filter>
+    </ClCompile>
+    <ClCompile Include="214 Shortest Palindrome.cpp">
+      <Filter>done</Filter>
+    </ClCompile>
+    <ClCompile Include="211 Add and Search Word - Data structure design.cpp">
+      <Filter>done</Filter>
+    </ClCompile>
+    <ClCompile Include="212 Word Search II.cpp">
+      <Filter>done</Filter>
+    </ClCompile>
+    <ClCompile Include="213 House Robber II.cpp">
+      <Filter>done</Filter>
+    </ClCompile>
+    <ClCompile Include="219 Contains Duplicate II.cpp">
+      <Filter>done</Filter>
+    </ClCompile>
+    <ClCompile Include="215 Kth Largest Element in an Array.cpp">
+      <Filter>done</Filter>
+    </ClCompile>
+    <ClCompile Include="216 Combination Sum III.cpp">
+      <Filter>done</Filter>
+    </ClCompile>
+    <ClCompile Include="217 Contains Duplicate.cpp">
+      <Filter>done</Filter>
+    </ClCompile>
+    <ClCompile Include="218 The Skyline Problem.cpp">
+      <Filter>done</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
