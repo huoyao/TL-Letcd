@@ -634,13 +634,16 @@
     <ClCompile Include="223 Rectangle Area.cpp">
       <Filter>done</Filter>
     </ClCompile>
-    <ClCompile Include="224 Basic Calculator.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="226 Invert Binary Tree.cpp">
+      <Filter>done</Filter>
     </ClCompile>
     <ClCompile Include="225 Implement Stack using Queues.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>done</Filter>
     </ClCompile>
-    <ClCompile Include="226 Invert Binary Tree.cpp">
+    <ClCompile Include="224 Basic Calculator.cpp">
+      <Filter>done</Filter>
+    </ClCompile>
+    <ClCompile Include="227 Basic Calculator II.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
