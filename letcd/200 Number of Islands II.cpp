@@ -59,6 +59,7 @@ public:
     {
       const int &id_x = operators[i].x, &id_y = operators[i].y;
       const int &id = id_x*m + id_y;
+      if(is_island[id]) { res.push_back(cnt);continue; }
       is_island[id] = true;
       ++cnt;
       if(id_y>0 && is_island[id-1]) check(id, id - 1,uf_set);
@@ -85,7 +86,7 @@ int main()
 {
   Solution slu;
   int n = 4, m = 5;
-  vector<Point> input = { { 1, 1 }, { 1, 2 }, { 1, 3 }, {1,4}};
+  vector<Point> input = { { 1, 1 }, { 1, 2 }, { 1, 3 }, { 1, 4 }, {1,1} };
   vector<int> res = slu.numIslands2(n,m,input);
   for(auto &t : res)
     cout << t << "  ";
