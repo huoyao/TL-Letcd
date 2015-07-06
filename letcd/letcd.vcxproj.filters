@@ -644,6 +644,9 @@
       <Filter>done</Filter>
     </ClCompile>
     <ClCompile Include="227 Basic Calculator II.cpp">
+      <Filter>done</Filter>
+    </ClCompile>
+    <ClCompile Include="200 Number of Islands II.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
