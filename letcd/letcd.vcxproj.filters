@@ -652,5 +652,20 @@
     <ClCompile Include="229 Majority Element II.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="228 Summary Ranges.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="230 Kth Smallest Element in a BST.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="235 Lowest Common Ancestor of a Binary Search Tree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="236 Lowest Common Ancestor of a Binary Tree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="231 Power of Two.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
