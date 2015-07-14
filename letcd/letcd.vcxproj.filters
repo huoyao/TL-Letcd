@@ -667,5 +667,14 @@
     <ClCompile Include="231 Power of Two.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="234 Palindrome Linked List.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="232 Implement Queue using Stacks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="233 Number of Digit One.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
