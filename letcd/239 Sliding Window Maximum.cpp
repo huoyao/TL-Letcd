@@ -1,3 +1,4 @@
+#if 0
 #include <iostream>
 #include <deque>
 #include <vector>
@@ -43,3 +44,4 @@ int main()
   system("pause");
   return 0;
 }
+#endif

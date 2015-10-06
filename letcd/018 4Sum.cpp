@@ -1,3 +1,4 @@
+#if 0
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -80,3 +81,4 @@ int main()
   for (auto &t:res)
     cout << t[0] << " " << t[1] << " " << t[2] << " " << t[3] << endl;
 }
+#endif

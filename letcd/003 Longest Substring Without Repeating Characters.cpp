@@ -1,3 +1,4 @@
+#if 0
 #include <iostream>
 #include <vector>
 #include <string>
@@ -27,3 +28,4 @@ int main()
   cout <<res<< endl;
   system("pause");
 }
+#endif

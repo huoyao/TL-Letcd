@@ -1,3 +1,4 @@
+#if 1
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -5,14 +6,15 @@ using namespace std;
 
 class Solution {
 public:
-  int maxProduct(int A[], int n) {
-    if (n == 0) return 0;
-    int maxnum = A[0], curmax = A[0], curmin = A[0];
-    for (int i = 1; i < n; ++i)
+  int maxProduct(vector<int>& nums) {
+    int len = nums.size();
+    long long maxnum = 0, curmax = 1, curmin = 1,next_min,next_max;
+    for (int i = 0; i < len; ++i)
     {
-      int tmp = curmin*A[i];
-      curmin = min(A[i],min(tmp,curmax*A[i]));
-      curmax = max(A[i],max(tmp,curmax*A[i]));
+      next_min = curmin*nums[i];
+      next_max = curmax*nums[i];
+      curmin = min(static_cast<long long>(nums[i]),min(next_min,next_max));
+      curmax = max(static_cast<long long>(nums[i]),max(next_min, next_max));
       maxnum = max(maxnum,curmax);
     }
     return maxnum;
@@ -28,3 +30,4 @@ int main()
   cout << res << endl;
   system("pause");
 }
+#endif

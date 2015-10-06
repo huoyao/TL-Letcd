@@ -1,3 +1,4 @@
+#if 0
 /*
 Given a sorted integer array where the range of 
 elements are [lower, upper] inclusive, return its missing ranges.
@@ -48,3 +49,4 @@ int main()
   system("pause");
   return 0;
 }
+#endif

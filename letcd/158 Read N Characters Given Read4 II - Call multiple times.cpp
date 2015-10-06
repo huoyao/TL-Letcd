@@ -1,3 +1,4 @@
+#if 0
 /*
 The API : int read4(char *buf) reads 4 characters at a time from a file.
 The return value is the actual number of characters read.For example,
@@ -43,3 +44,4 @@ int main()
   return 0;
 }
 
+#endif

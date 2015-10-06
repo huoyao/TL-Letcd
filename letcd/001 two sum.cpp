@@ -1,3 +1,4 @@
+#if 0
 /**********************************************************
                               001 Two Sum
   Given an array of integers, find two numbers such that
@@ -48,3 +49,4 @@ int main()
   cout << vecres[0]<< " " << vecres[1] << endl;
   system("pause");
 }
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -50,3 +51,4 @@ int main()
   cout << res << endl;
   system("pause");
 }
+#endif

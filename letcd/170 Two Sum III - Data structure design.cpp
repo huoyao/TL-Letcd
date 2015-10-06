@@ -1,3 +1,4 @@
+#if 0
 /*
 Design and implement a TwoSum class. It should support the following operations:add and find.
 add - Add the number to an internal data structure.
@@ -42,3 +43,4 @@ int main()
   system("pause");
   return 0;
 }
+#endif

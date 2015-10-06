@@ -1,3 +1,4 @@
+#if 0
 /*
 Given an array of integers that is already sorted in ascending order,
 find two numbers such that they add up to a specific target number.
@@ -45,3 +46,4 @@ int main()
   system("pause");
   return 0;
 }
+#endif

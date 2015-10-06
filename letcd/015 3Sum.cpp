@@ -1,3 +1,4 @@
+#if 0
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -42,3 +43,4 @@ int main()
   for (int i = 0; i < res.size();++i)
     cout << res[i][0] << "  " << res[i][1] << "  " << res[i][2] << endl;
 }
+#endif

@@ -1,3 +1,4 @@
+#if 0
 /*
 Given an input string, reverse the string word by word. A word is defined as a sequence of non-space characters.
 
@@ -42,3 +43,4 @@ int main()
   system("pause");
   return 0;
 }
+#endif

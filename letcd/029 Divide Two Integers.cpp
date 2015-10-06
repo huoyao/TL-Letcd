@@ -1,13 +1,13 @@
+#if 0
 #include <iostream>
-#include <vector>
-#include <algorithm>
-#include <climits>
 using namespace std;
 
 class Solution {
 public:
   int divide(int dividend, int divisor) {
-    long a = abs((long long)dividend),b=abs((long long) divisor),res=0;
+    if(dividend == INT_MIN && divisor == -1 || divisor == 0) return INT_MAX;
+    long long a = abs(static_cast<long long>(dividend)),
+              b=abs(static_cast<long long>(divisor)),res=0;
     while (a >= b)
     {
       long long c = b;
@@ -17,10 +17,9 @@ public:
         res += 1 << i;
       }
     }
-    int tag = (dividend^divisor) >> 31 ? -1 : 1;
-    res *= tag;
-    if (res > INT_MAX || res < INT_MIN) return INT_MAX;
-    else return (int)res;
+    int tag = (dividend>0)^(divisor>0);
+    if(tag == 1) res = -res;
+    return static_cast<int>(res);
   }
 };
 
@@ -33,3 +32,4 @@ int main()
   cout << res << endl;
   system("pause");
 }
+#endif

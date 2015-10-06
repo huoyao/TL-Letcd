@@ -1,3 +1,4 @@
+#if 0
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -62,3 +63,4 @@ int main()
   system("pause");
   return 0;
 }
+#endif

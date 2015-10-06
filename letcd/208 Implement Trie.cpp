@@ -1,3 +1,4 @@
+#if 0
 #include <string>
 #include <iostream>
 #include <vector>
@@ -97,3 +98,4 @@ int main()
   cout << tire.search("bad");
   return 0;
 }
+#endif

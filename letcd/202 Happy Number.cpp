@@ -1,3 +1,4 @@
+#if 0
 #include <iostream>
 #include <unordered_set>
 #include <algorithm>
@@ -36,3 +37,4 @@ int main()
   system("pause");
   return 0;
 }
+#endif

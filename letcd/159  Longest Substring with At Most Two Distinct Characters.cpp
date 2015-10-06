@@ -1,3 +1,4 @@
+#if 0
 /*
 Given a string, find the length of the longest substring T 
 that contains at most 2 distinct characters.
@@ -44,3 +45,4 @@ int main()
   system("pause");
   return 0;
 }
+#endif

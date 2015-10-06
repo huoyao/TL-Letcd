@@ -1,3 +1,4 @@
+#if 0
 #include <iostream>
 #include <algorithm>
 using namespace std;
@@ -37,3 +38,4 @@ int main()
   cout << res << endl;
   system("pause");
 }
+#endif

@@ -1,6 +1,6 @@
+#if 0
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include <queue>
 using namespace std;
 
@@ -25,8 +25,9 @@ public:
     {
       for (int j = 0; j < length; ++j)
       {
-        if (board[i][j] == 'O') board[i][j] = 'X';
-        else if (board[i][j] == 'B') board[i][j] = 'O';
+        if(board[i][j] == 'X') continue;
+        else if (board[i][j] == 'O') board[i][j] = 'X';
+        else board[i][j] = 'O';
       }
     }
   }
@@ -38,19 +39,22 @@ public:
     while (!q.empty()) {
       pair<int, int> cur = q.front();
       q.pop_front();
-      pair<int, int> adjs[4] = { { cur.first - 1, cur.second },
-      { cur.first + 1, cur.second },
-      { cur.first, cur.second - 1 },
-      { cur.first, cur.second + 1 } };
-      for (int i = 0; i < 4; ++i)
-      {
-        int &adjW = adjs[i].first;
-        int &adjL = adjs[i].second;
-        if (adjW >= 0 && adjW < width && adjL >= 0 && adjL < length
-          && board[adjW][adjL] == 'O') {
-          q.push_back(make_pair(adjW, adjL));
-          board[adjW][adjL] = 'B';
-        }
+      const int&x = cur.first, &y = cur.second;
+      if(x - 1 >= 0 && board[x - 1][y] == 'O') {
+        q.push_back(make_pair(x-1, y));
+        board[x-1][y] = 'B';
+      }
+      if(y - 1 >= 0 && board[x][y-1] == 'O') {
+        q.push_back(make_pair(x, y-1));
+        board[x][y-1] = 'B';
+      }
+      if(x + 1 < width && board[x + 1][y] == 'O') {
+        q.push_back(make_pair(x + 1, y));
+        board[x + 1][y] = 'B';
+      }
+      if(y + 1 < length && board[x][y+1] == 'O') {
+        q.push_back(make_pair(x, y+1));
+        board[x][y+1] = 'B';
       }
     }
   }
@@ -60,7 +64,6 @@ int main()
 {
   Solution slu;
   vector<vector<char> > input = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'o', 'x' }, { 'x', 'o', 'o', 'x' }, { 'x', 'x', 'x', 'x' }};
-  int target = 9;
   slu.solve(input);
   for (auto &t : input)
   {
@@ -70,3 +73,4 @@ int main()
   }
   system("pause");
 }
+#endif
