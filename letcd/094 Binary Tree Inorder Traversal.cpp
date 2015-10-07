@@ -36,6 +36,20 @@ public:
     } while (!st.empty() || node != NULL);
     return res;
   }
+
+  //奇怪的左子树用递归右子树用迭代的中序遍历
+  void inorder(TreeNode* root) {
+    while (root != NULL) {
+      // Left subtree
+      inorder(root->left);
+
+      // Print value
+      printf("%d\n", root->val);
+
+      // Right subtree
+      root = root->right;
+    }
+  }
 };
 
 int main()

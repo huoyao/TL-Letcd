@@ -1,4 +1,4 @@
-#if 0
+#if 1
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -6,27 +6,19 @@ using namespace std;
 
 class Solution {
 public:
-  vector<int> spiralOrder(vector<vector<int> > &matrix) {
-    int m = matrix.size(), n = matrix.size()?matrix[0].size():0,cnt=0;   //mark
-    int minelem = min(m, n),id = minelem / 2, round1 = n - 1, round2 = m - 1, i = 0;
-    bool moreline = false;
-    vector<int> res(m*n);
-    if (minelem % 2) moreline = true;
-    for (; i < id; ++i)
-    {
-      int idx1 = i, idx2 = i;
-      while (idx1 < round1) res[cnt++]=matrix[i][idx1++];
-      while (idx2 < round2) res[cnt++]=matrix[idx2++][idx1];
-      while (idx1 > i) res[cnt++]=matrix[idx2][idx1--];
-      while (idx2 > i) res[cnt++]=matrix[idx2--][idx1];
-      --round1;
-      --round2;
+  vector<int> spiralOrder(vector<vector<int> > &matrix) { 
+    int beg_x = 0, beg_y = 0, end_y = matrix.size(), end_x = end_y ? matrix[0].size() : 0;
+    vector<int> res(end_x--*end_y--);
+    int i=0,id=0;
+    while(beg_x<end_x && beg_y<end_y) {
+      for(i = beg_x;i < end_x;++i) res[id++] = matrix[beg_y][i];
+      for(i = beg_y;i < end_y;++i) res[id++] = matrix[i][end_x];
+      for(i = end_x;i > beg_x;--i) res[id++] = matrix[end_y][i];
+      for(i = end_y;i > beg_y;--i) res[id++] = matrix[i][beg_x];
+      ++beg_x, ++beg_y,  --end_x,--end_y;
     }
-    if (!moreline) return res;
-    if (minelem == m)
-      for (int j = i; j <= round1; ++j) res[cnt++]=matrix[i][j];
-    else
-      for (int j = i; j <= round2; ++j) res[cnt++]=matrix[j][i];
+    if(beg_x == end_x) for(i = beg_y;i <= end_y;++i) res[id++] = matrix[i][beg_x];
+    else if(beg_y == end_y) for(i = beg_x;i <= end_x;++i) res[id++] = matrix[beg_y][i];
     return res;
   }
 };
